@@ -1,14 +1,16 @@
-import { ImageIcon } from "lucide-react";
 import { SolidCard } from "@/components/ui/solid-card";
+import { InterfaceSketch } from "@/components/project/interface-sketch";
 
 export function ScreenshotPlaceholder({ label }: { label: string }) {
   return (
-    <SolidCard hover={false} className="flex aspect-video flex-col items-center justify-center gap-2 p-6 text-center">
-      <ImageIcon className="size-6 text-muted-foreground/50" />
-      <p className="text-xs text-muted-foreground">{label}</p>
-      <p className="text-[10px] uppercase tracking-wide text-muted-foreground/50">
-        Screenshot placeholder
-      </p>
+    <SolidCard hover={false} className="flex aspect-video flex-col justify-between p-5">
+      <InterfaceSketch label={label} className="flex-1" />
+      <div>
+        <p className="text-xs font-medium">{label}</p>
+        <p className="text-[10px] uppercase tracking-wide text-muted-foreground/60">
+          Illustrative — not an actual screen
+        </p>
+      </div>
     </SolidCard>
   );
 }
