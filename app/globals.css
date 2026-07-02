@@ -204,3 +204,24 @@
     scroll-behavior: auto !important;
   }
 }
+
+/* Printed output (e.g. Save as PDF from /resume) should always be a clean
+   white page, regardless of which theme the visitor had selected. Scoped to
+   a dedicated class (not :root/.dark) since Tailwind's @theme consolidation
+   drops extra conditional overrides of theme-tracked variables on those
+   selectors specifically. */
+@media print {
+  .print-force-light {
+    --background: #ffffff;
+    --foreground: #0b1220;
+    --card: #ffffff;
+    --card-foreground: #0b1220;
+    --muted-foreground: #475569;
+    --accent-blue: #2563eb;
+    --accent-cyan: #0891b2;
+    --border: #e2e8f0;
+    --surface: #ffffff;
+    background: #ffffff;
+    color: #0b1220;
+  }
+}

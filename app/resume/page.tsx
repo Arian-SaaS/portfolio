@@ -17,7 +17,7 @@ export const metadata: Metadata = {
 
 export default function ResumePage() {
   return (
-    <div className="mx-auto max-w-4xl px-4 py-20 sm:px-6 lg:px-8 print:py-6">
+    <div className="print-force-light mx-auto max-w-4xl px-4 py-20 sm:px-6 lg:px-8 print:py-6">
       <FadeIn className="print:hidden">
         <SectionHeading eyebrow="Resume" title="Interactive resume" />
         <div className="mt-6 flex flex-wrap gap-3">
