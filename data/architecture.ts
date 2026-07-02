@@ -1,9 +1,21 @@
+export type ArchitectureIcon =
+  | "layers"
+  | "users"
+  | "key"
+  | "shield"
+  | "bot"
+  | "audio"
+  | "webhook"
+  | "database"
+  | "cloud";
+
 export type ArchitectureDiagram = {
   slug: string;
   title: string;
   description: string;
   nodes: string[];
   size: "sm" | "md" | "lg";
+  icon: ArchitectureIcon;
 };
 
 export const architectureDiagrams: ArchitectureDiagram[] = [
@@ -19,6 +31,7 @@ export const architectureDiagrams: ArchitectureDiagram[] = [
       "Shared data layer",
     ],
     size: "lg",
+    icon: "layers",
   },
   {
     slug: "multi-tenant",
@@ -27,6 +40,7 @@ export const architectureDiagrams: ArchitectureDiagram[] = [
       "Tenant isolation enforced at the data-access layer so no application-level bug can leak one customer's data into another's.",
     nodes: ["Tenant resolver", "Scoped data access layer", "Per-tenant storage boundary"],
     size: "md",
+    icon: "users",
   },
   {
     slug: "auth-flow",
@@ -35,6 +49,7 @@ export const architectureDiagrams: ArchitectureDiagram[] = [
       "Session issuance, token refresh, and identity propagation across services in a multi-tenant system.",
     nodes: ["Login / identity provider", "Session issuance", "Token verification per request"],
     size: "sm",
+    icon: "key",
   },
   {
     slug: "rbac",
@@ -43,6 +58,7 @@ export const architectureDiagrams: ArchitectureDiagram[] = [
       "A single permissions model shared by every module and by the AI layer, so access is defined once per tenant.",
     nodes: ["Roles & policies", "Permission check middleware", "Module & AI access enforcement"],
     size: "md",
+    icon: "shield",
   },
   {
     slug: "ai-orchestration",
@@ -51,6 +67,7 @@ export const architectureDiagrams: ArchitectureDiagram[] = [
       "Cross-module AI reasoning implemented as orchestration over governed APIs, inheriting existing permission boundaries.",
     nodes: ["User query", "Reasoning/orchestration layer", "Governed module APIs", "Grounded response"],
     size: "lg",
+    icon: "bot",
   },
   {
     slug: "voice-pipeline",
@@ -59,6 +76,7 @@ export const architectureDiagrams: ArchitectureDiagram[] = [
       "Real-time voice transport decoupled from the reasoning engine so the same intelligence serves chat, voice, and automated briefings.",
     nodes: ["Real-time voice transport", "Speech-to-intent", "Reasoning engine", "Voice response"],
     size: "md",
+    icon: "audio",
   },
   {
     slug: "rest-api",
@@ -67,6 +85,7 @@ export const architectureDiagrams: ArchitectureDiagram[] = [
       "Consistent resource modeling, versioning, and permission enforcement across services.",
     nodes: ["Resource routes", "Validation & auth middleware", "Service layer", "Data layer"],
     size: "sm",
+    icon: "webhook",
   },
   {
     slug: "database-relationships",
@@ -75,6 +94,7 @@ export const architectureDiagrams: ArchitectureDiagram[] = [
       "High-level entity relationships showing tenancy boundaries and shared reference data across modules.",
     nodes: ["Tenant", "Core entities (user, account)", "Module-owned entities"],
     size: "md",
+    icon: "database",
   },
   {
     slug: "cloud-deployment",
@@ -83,5 +103,6 @@ export const architectureDiagrams: ArchitectureDiagram[] = [
       "Independent scaling per module on cloud-native infrastructure, with CI/CD from commit to production.",
     nodes: ["CI/CD pipeline", "Cloud Functions / services", "Cloud storage", "Monitoring & scaling"],
     size: "lg",
+    icon: "cloud",
   },
 ];

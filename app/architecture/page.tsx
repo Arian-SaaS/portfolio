@@ -1,15 +1,39 @@
 import type { Metadata } from "next";
+import {
+  Layers,
+  Users,
+  KeyRound,
+  ShieldCheck,
+  Bot,
+  AudioLines,
+  Webhook,
+  Database,
+  Cloud,
+  type LucideIcon,
+} from "lucide-react";
 import { SectionHeading } from "@/components/sections/section-heading";
 import { SolidCard } from "@/components/ui/solid-card";
 import { BentoGrid, BentoCard } from "@/components/ui/bento-grid";
 import { FadeIn } from "@/components/motion/fade-in";
 import { DiagramPlaceholder } from "@/components/project/diagram-placeholder";
-import { architectureDiagrams } from "@/data/architecture";
+import { architectureDiagrams, type ArchitectureIcon } from "@/data/architecture";
 
 export const metadata: Metadata = {
   title: "Architecture Gallery",
   description:
     "High-level system design diagrams — enterprise SaaS, multi-tenancy, RBAC, AI orchestration, and cloud deployment.",
+};
+
+const iconMap: Record<ArchitectureIcon, LucideIcon> = {
+  layers: Layers,
+  users: Users,
+  key: KeyRound,
+  shield: ShieldCheck,
+  bot: Bot,
+  audio: AudioLines,
+  webhook: Webhook,
+  database: Database,
+  cloud: Cloud,
 };
 
 export default function ArchitecturePage() {
@@ -23,17 +47,27 @@ export default function ArchitecturePage() {
         />
       </FadeIn>
       <BentoGrid className="mt-12">
-        {architectureDiagrams.map((diagram) => (
-          <BentoCard key={diagram.slug} span={diagram.size === "lg" ? "md" : diagram.size}>
-            <SolidCard hover={false} className="h-full p-6">
-              <h3 className="font-heading font-semibold">{diagram.title}</h3>
-              <p className="mt-2 text-sm text-muted-foreground">{diagram.description}</p>
-              <div className="mt-5">
-                <DiagramPlaceholder label={diagram.title} nodes={diagram.nodes} compact />
-              </div>
-            </SolidCard>
-          </BentoCard>
-        ))}
+        {architectureDiagrams.map((diagram) => {
+          const Icon = iconMap[diagram.icon];
+          return (
+            <BentoCard key={diagram.slug} span={diagram.size === "lg" ? "md" : diagram.size}>
+              <SolidCard className="group h-full p-6">
+                <div className="flex items-center gap-3">
+                  <span className="flex size-9 shrink-0 items-center justify-center rounded-lg bg-accent-blue/10 text-accent-blue transition-colors duration-300 group-hover:bg-accent-blue group-hover:text-white">
+                    <Icon className="size-4.5" />
+                  </span>
+                  <h3 className="font-heading font-semibold transition-colors duration-300 group-hover:text-accent-cyan">
+                    {diagram.title}
+                  </h3>
+                </div>
+                <p className="mt-3 text-sm text-muted-foreground">{diagram.description}</p>
+                <div className="mt-6">
+                  <DiagramPlaceholder label={diagram.title} nodes={diagram.nodes} compact />
+                </div>
+              </SolidCard>
+            </BentoCard>
+          );
+        })}
       </BentoGrid>
     </div>
   );
