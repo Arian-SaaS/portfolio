@@ -10,8 +10,8 @@ export const siteConfig = {
   email: "salmanian18@gmail.com",
   location: "United States",
   social: {
-    linkedin: "https://linkedin.com/in/reza-salmanian",
-    github: "https://github.com/reza-salmanian",
+    linkedin: "https://www.linkedin.com/in/reza-sal1",
+    github: "https://github.com/Arian-SaaS",
   },
   url: "https://rezasalmanian.com",
   description:
