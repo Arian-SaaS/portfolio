@@ -192,6 +192,42 @@
       ),
       radial-gradient(ellipse 100% 100% at 50% 100%, var(--hero-vignette), transparent);
   }
+  .beam-sweep-h {
+    background: linear-gradient(90deg, transparent, var(--accent-cyan), transparent);
+    background-size: 40% 100%;
+    background-repeat: no-repeat;
+    background-position: -60% 0;
+    animation: beam-sweep-h 6s linear infinite;
+    box-shadow: 0 0 8px 1px color-mix(in srgb, var(--accent-cyan) 55%, transparent);
+    opacity: 0.55;
+  }
+  .beam-sweep-v {
+    background: linear-gradient(180deg, transparent, var(--accent-blue), transparent);
+    background-size: 100% 40%;
+    background-repeat: no-repeat;
+    background-position: 0 -60%;
+    animation: beam-sweep-v 7s linear infinite;
+    box-shadow: 0 0 8px 1px color-mix(in srgb, var(--accent-blue) 55%, transparent);
+    opacity: 0.55;
+  }
+}
+
+@keyframes beam-sweep-h {
+  0% {
+    background-position: -60% 0;
+  }
+  100% {
+    background-position: 160% 0;
+  }
+}
+
+@keyframes beam-sweep-v {
+  0% {
+    background-position: 0 -60%;
+  }
+  100% {
+    background-position: 0 160%;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {

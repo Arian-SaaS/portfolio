@@ -6,6 +6,7 @@ import { FadeIn } from "@/components/motion/fade-in";
 import { GithubIcon, LinkedinIcon } from "@/components/icons/brand-icons";
 import { HeroScene } from "@/components/three/hero-scene";
 import { CodeSnippetCard } from "@/components/sections/code-snippet-card";
+import { GridBeams } from "@/components/effects/grid-beams";
 import { siteConfig } from "@/data/site-config";
 import { getProfilePhotoUrl } from "@/lib/profile-photo";
 
@@ -15,6 +16,7 @@ export function Hero() {
   return (
     <section className="relative overflow-hidden">
       <div className="hero-gradient absolute inset-0 -z-10" aria-hidden />
+      <GridBeams className="-z-10" />
       <div className="mx-auto grid max-w-6xl items-center gap-16 px-4 py-24 sm:px-6 sm:py-32 lg:grid-cols-2 lg:px-8">
         <div className="flex flex-col items-center text-center lg:items-start lg:text-left">
           <FadeIn>
