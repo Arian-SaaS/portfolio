@@ -10,7 +10,14 @@ import { FadeIn } from "@/components/motion/fade-in";
 import { ProjectSection, ProjectList } from "@/components/project/project-section";
 import { ScreenshotPlaceholder } from "@/components/project/screenshot-placeholder";
 import { DiagramPlaceholder } from "@/components/project/diagram-placeholder";
+import { DashboardPreview } from "@/components/dashboard/dashboard-preview";
 import { projects, getProjectBySlug } from "@/data/projects";
+import { financeDashboard, executiveDashboard } from "@/data/dashboard-preview";
+
+const dashboardPreviews = {
+  "finance-platform": { data: financeDashboard, valueFormat: "currencyK" },
+  artemis: { data: executiveDashboard, valueFormat: "count" },
+} as const;
 
 export function generateStaticParams() {
   return projects.map((project) => ({ slug: project.slug }));
@@ -41,6 +48,8 @@ export default async function ProjectPage({
 
   const currentIndex = projects.findIndex((p) => p.slug === slug);
   const nextProject = projects[(currentIndex + 1) % projects.length];
+  const dashboardPreview =
+    dashboardPreviews[slug as keyof typeof dashboardPreviews];
 
   return (
     <article>
@@ -123,11 +132,20 @@ export default async function ProjectPage({
         </ProjectSection>
 
         <ProjectSection title="Screenshots">
-          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-            {project.screenshots.map((s) => (
-              <ScreenshotPlaceholder key={s.label} label={s.label} />
-            ))}
-          </div>
+          {dashboardPreview ? (
+            <div className="-mx-4 sm:-mx-6 lg:-mx-16">
+              <DashboardPreview
+                data={dashboardPreview.data}
+                valueFormat={dashboardPreview.valueFormat}
+              />
+            </div>
+          ) : (
+            <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+              {project.screenshots.map((s) => (
+                <ScreenshotPlaceholder key={s.label} label={s.label} />
+              ))}
+            </div>
+          )}
         </ProjectSection>
 
         <ProjectSection title="Architecture Diagram">
