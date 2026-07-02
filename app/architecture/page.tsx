@@ -15,7 +15,7 @@ import { SectionHeading } from "@/components/sections/section-heading";
 import { SolidCard } from "@/components/ui/solid-card";
 import { BentoGrid, BentoCard } from "@/components/ui/bento-grid";
 import { FadeIn } from "@/components/motion/fade-in";
-import { DiagramPlaceholder } from "@/components/project/diagram-placeholder";
+import { FlowDiagram } from "@/components/architecture/flow-diagram";
 import { architectureDiagrams, type ArchitectureIcon } from "@/data/architecture";
 
 export const metadata: Metadata = {
@@ -43,7 +43,7 @@ export default function ArchitecturePage() {
         <SectionHeading
           eyebrow="Architecture Gallery"
           title="System design, at a conceptual level"
-          description="These diagrams communicate the shape of the systems I build — how requests, data, and permissions flow — without revealing proprietary implementation."
+          description="These diagrams communicate the shape of the systems I build — how requests, data, and permissions flow — without revealing proprietary implementation. Drag nodes, hover for detail, pinch or use the controls to zoom."
         />
       </FadeIn>
       <BentoGrid className="mt-12">
@@ -62,7 +62,7 @@ export default function ArchitecturePage() {
                 </div>
                 <p className="mt-3 text-sm text-muted-foreground">{diagram.description}</p>
                 <div className="mt-6">
-                  <DiagramPlaceholder label={diagram.title} nodes={diagram.nodes} compact />
+                  <FlowDiagram items={diagram.nodes} compact />
                 </div>
               </SolidCard>
             </BentoCard>

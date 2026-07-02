@@ -9,7 +9,7 @@ import { SolidCard } from "@/components/ui/solid-card";
 import { FadeIn } from "@/components/motion/fade-in";
 import { ProjectSection, ProjectList } from "@/components/project/project-section";
 import { ScreenshotPlaceholder } from "@/components/project/screenshot-placeholder";
-import { DiagramPlaceholder } from "@/components/project/diagram-placeholder";
+import { FlowDiagram } from "@/components/architecture/flow-diagram";
 import { DashboardPreview } from "@/components/dashboard/dashboard-preview";
 import { projects, getProjectBySlug } from "@/data/projects";
 import { financeDashboard, executiveDashboard } from "@/data/dashboard-preview";
@@ -156,7 +156,10 @@ export default async function ProjectPage({
         </ProjectSection>
 
         <ProjectSection title="Architecture Diagram">
-          <DiagramPlaceholder label={project.diagram.label} nodes={project.diagram.nodes} />
+          <p className="mb-4 text-xs uppercase tracking-wide text-muted-foreground">
+            {project.diagram.label}
+          </p>
+          <FlowDiagram items={project.diagram.nodes} />
         </ProjectSection>
 
         <ProjectSection title="Technical Challenges">
