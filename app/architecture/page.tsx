@@ -29,7 +29,7 @@ export default function ArchitecturePage() {
               <h3 className="font-heading font-semibold">{diagram.title}</h3>
               <p className="mt-2 text-sm text-muted-foreground">{diagram.description}</p>
               <div className="mt-5">
-                <DiagramPlaceholder label={diagram.title} nodes={diagram.nodes} />
+                <DiagramPlaceholder label={diagram.title} nodes={diagram.nodes} compact />
               </div>
             </GlassCard>
           </BentoCard>
