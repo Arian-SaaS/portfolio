@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
-import { GlassCard } from "@/components/ui/glass-card";
+import { SolidCard } from "@/components/ui/solid-card";
 import { Badge } from "@/components/ui/badge";
 import { Project } from "@/types/project";
 import { cn } from "@/lib/utils";
@@ -14,7 +14,7 @@ export function ProjectCard({
 }) {
   return (
     <Link href={`/projects/${project.slug}`} className="group block h-full">
-      <GlassCard
+      <SolidCard
         className={cn(
           "flex h-full flex-col justify-between p-6",
           featured && "p-8"
@@ -53,7 +53,7 @@ export function ProjectCard({
         >
           {project.summary}
         </p>
-      </GlassCard>
+      </SolidCard>
     </Link>
   );
 }

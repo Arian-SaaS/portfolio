@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { SectionHeading } from "@/components/sections/section-heading";
-import { GlassCard } from "@/components/ui/glass-card";
+import { SolidCard } from "@/components/ui/solid-card";
 import { BentoGrid, BentoCard } from "@/components/ui/bento-grid";
 import { FadeIn } from "@/components/motion/fade-in";
 import { skillCategories } from "@/data/skills";
@@ -26,7 +26,7 @@ export default function SkillsPage() {
       <BentoGrid className="mt-12">
         {skillCategories.map((cat) => (
           <BentoCard key={cat.category} span={spanForSize[cat.size]}>
-            <GlassCard className="h-full p-6">
+            <SolidCard className="h-full p-6">
               <h3 className="font-heading text-lg font-semibold">{cat.category}</h3>
               <div className="mt-4 flex flex-wrap gap-2">
                 {cat.skills.map((skill) => (
@@ -38,7 +38,7 @@ export default function SkillsPage() {
                   </span>
                 ))}
               </div>
-            </GlassCard>
+            </SolidCard>
           </BentoCard>
         ))}
       </BentoGrid>

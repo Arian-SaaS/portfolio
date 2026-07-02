@@ -4,6 +4,7 @@ import { Hero } from "@/components/sections/hero";
 import { SectionHeading } from "@/components/sections/section-heading";
 import { ProjectCard } from "@/components/project/project-card";
 import { GlassCard } from "@/components/ui/glass-card";
+import { SolidCard } from "@/components/ui/solid-card";
 import { Button } from "@/components/ui/button";
 import { FadeIn } from "@/components/motion/fade-in";
 import { StaggerContainer, StaggerItem } from "@/components/motion/stagger";
@@ -29,12 +30,12 @@ export default function Home() {
         <StaggerContainer className="grid grid-cols-2 gap-4 sm:grid-cols-4">
           {stats.map((stat) => (
             <StaggerItem key={stat.label}>
-              <GlassCard className="p-6 text-center" hover={false}>
+              <SolidCard className="p-6 text-center" hover={false}>
                 <p className="font-heading text-3xl font-semibold text-accent-cyan">
                   {stat.value}
                 </p>
                 <p className="mt-2 text-xs text-muted-foreground">{stat.label}</p>
-              </GlassCard>
+              </SolidCard>
             </StaggerItem>
           ))}
         </StaggerContainer>
@@ -68,7 +69,7 @@ export default function Home() {
         <BentoGrid className="mt-10">
           {skillCategories.slice(0, 4).map((cat) => (
             <BentoCard key={cat.category} span={cat.size === "lg" ? "md" : "sm"}>
-              <GlassCard className="h-full p-6">
+              <SolidCard className="h-full p-6">
                 <h3 className="font-heading font-semibold">{cat.category}</h3>
                 <div className="mt-3 flex flex-wrap gap-2">
                   {cat.skills.slice(0, 5).map((s) => (
@@ -80,7 +81,7 @@ export default function Home() {
                     </span>
                   ))}
                 </div>
-              </GlassCard>
+              </SolidCard>
             </BentoCard>
           ))}
         </BentoGrid>

@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Quote } from "lucide-react";
 import { SectionHeading } from "@/components/sections/section-heading";
-import { GlassCard } from "@/components/ui/glass-card";
+import { SolidCard } from "@/components/ui/solid-card";
 import { Badge } from "@/components/ui/badge";
 import { StaggerContainer, StaggerItem } from "@/components/motion/stagger";
 import { FadeIn } from "@/components/motion/fade-in";
@@ -25,7 +25,7 @@ export default function TestimonialsPage() {
       <StaggerContainer className="mt-12 grid gap-6 sm:grid-cols-2">
         {testimonials.map((t, i) => (
           <StaggerItem key={i}>
-            <GlassCard className="h-full p-6" hover={false}>
+            <SolidCard className="h-full p-6" hover={false}>
               {t.placeholder && (
                 <Badge variant="secondary" className="mb-4 border-0 bg-secondary text-xs">
                   Placeholder
@@ -39,7 +39,7 @@ export default function TestimonialsPage() {
                 <p className="text-sm font-medium">{t.name}</p>
                 <p className="text-xs text-muted-foreground">{t.role}</p>
               </div>
-            </GlassCard>
+            </SolidCard>
           </StaggerItem>
         ))}
       </StaggerContainer>

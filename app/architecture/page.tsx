@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { SectionHeading } from "@/components/sections/section-heading";
-import { GlassCard } from "@/components/ui/glass-card";
+import { SolidCard } from "@/components/ui/solid-card";
 import { BentoGrid, BentoCard } from "@/components/ui/bento-grid";
 import { FadeIn } from "@/components/motion/fade-in";
 import { DiagramPlaceholder } from "@/components/project/diagram-placeholder";
@@ -25,13 +25,13 @@ export default function ArchitecturePage() {
       <BentoGrid className="mt-12">
         {architectureDiagrams.map((diagram) => (
           <BentoCard key={diagram.slug} span={diagram.size === "lg" ? "md" : diagram.size}>
-            <GlassCard hover={false} className="h-full p-6">
+            <SolidCard hover={false} className="h-full p-6">
               <h3 className="font-heading font-semibold">{diagram.title}</h3>
               <p className="mt-2 text-sm text-muted-foreground">{diagram.description}</p>
               <div className="mt-5">
                 <DiagramPlaceholder label={diagram.title} nodes={diagram.nodes} compact />
               </div>
-            </GlassCard>
+            </SolidCard>
           </BentoCard>
         ))}
       </BentoGrid>

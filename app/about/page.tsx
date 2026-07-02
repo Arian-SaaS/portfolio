@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { SectionHeading } from "@/components/sections/section-heading";
-import { GlassCard } from "@/components/ui/glass-card";
+import { SolidCard } from "@/components/ui/solid-card";
 import { StaggerContainer, StaggerItem } from "@/components/motion/stagger";
 import { FadeIn } from "@/components/motion/fade-in";
 
@@ -100,12 +100,12 @@ export default function AboutPage() {
         <StaggerContainer className="mt-6 grid gap-4 sm:grid-cols-2">
           {values.map((value) => (
             <StaggerItem key={value.title}>
-              <GlassCard className="h-full p-6">
+              <SolidCard className="h-full p-6">
                 <h3 className="font-heading font-semibold">{value.title}</h3>
                 <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
                   {value.description}
                 </p>
-              </GlassCard>
+              </SolidCard>
             </StaggerItem>
           ))}
         </StaggerContainer>

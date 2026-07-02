@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Download, Mail, MapPin } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { GlassCard } from "@/components/ui/glass-card";
+import { SolidCard } from "@/components/ui/solid-card";
 import { FadeIn } from "@/components/motion/fade-in";
 import { SectionHeading } from "@/components/sections/section-heading";
 import { PrintButton } from "@/app/resume/print-button";
@@ -30,7 +30,7 @@ export default function ResumePage() {
         </div>
       </FadeIn>
 
-      <GlassCard hover={false} className="mt-10 p-8 print:border-0 print:bg-transparent print:p-0 print:shadow-none">
+      <SolidCard hover={false} className="mt-10 p-8 print:border-0 print:bg-transparent print:p-0 print:shadow-none">
         <div className="flex flex-col justify-between gap-4 sm:flex-row sm:items-end">
           <div>
             <h1 className="font-heading text-3xl font-semibold tracking-tight">
@@ -110,7 +110,7 @@ export default function ResumePage() {
             ))}
           </ul>
         </div>
-      </GlassCard>
+      </SolidCard>
     </div>
   );
 }

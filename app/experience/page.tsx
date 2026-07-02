@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { SectionHeading } from "@/components/sections/section-heading";
-import { GlassCard } from "@/components/ui/glass-card";
+import { SolidCard } from "@/components/ui/solid-card";
 import { FadeIn } from "@/components/motion/fade-in";
 import { experience } from "@/data/experience";
 import { GraduationCap, Briefcase, Milestone } from "lucide-react";
@@ -28,7 +28,7 @@ export default function ExperiencePage() {
         />
       </FadeIn>
 
-      <div className="relative mt-14 space-y-8 border-l border-glass-border pl-8">
+      <div className="relative mt-14 space-y-8 border-l border-border pl-8">
         {experience.map((entry) => {
           const Icon = icons[entry.type];
           return (
@@ -37,7 +37,7 @@ export default function ExperiencePage() {
                 <div className="absolute -left-[2.55rem] flex size-8 items-center justify-center rounded-full glass-panel-strong">
                   <Icon className="size-4 text-accent-cyan" />
                 </div>
-                <GlassCard className="p-6">
+                <SolidCard className="p-6">
                   <p className="text-xs uppercase tracking-wide text-muted-foreground">
                     {entry.period}
                   </p>
@@ -46,7 +46,7 @@ export default function ExperiencePage() {
                   <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
                     {entry.description}
                   </p>
-                </GlassCard>
+                </SolidCard>
               </div>
             </FadeIn>
           );

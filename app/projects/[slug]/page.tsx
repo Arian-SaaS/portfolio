@@ -5,6 +5,7 @@ import { ArrowLeft, ArrowRight } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { GlassCard } from "@/components/ui/glass-card";
+import { SolidCard } from "@/components/ui/solid-card";
 import { FadeIn } from "@/components/motion/fade-in";
 import { ProjectSection, ProjectList } from "@/components/project/project-section";
 import { ScreenshotPlaceholder } from "@/components/project/screenshot-placeholder";
@@ -87,7 +88,7 @@ export default async function ProjectPage({
 
       <div className="mx-auto max-w-4xl px-4 pb-24 sm:px-6 lg:px-8">
         <FadeIn>
-          <GlassCard hover={false} className="mb-4 p-6">
+          <SolidCard hover={false} className="mb-4 p-6">
             <p className="text-xs uppercase tracking-wide text-muted-foreground">Timeline</p>
             <ol className="mt-4 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
               {project.timeline.map((entry, i) => (
@@ -98,7 +99,7 @@ export default async function ProjectPage({
                 </li>
               ))}
             </ol>
-          </GlassCard>
+          </SolidCard>
         </FadeIn>
 
         <ProjectSection title="Executive Summary">

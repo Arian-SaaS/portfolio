@@ -1,5 +1,6 @@
 import { ArrowRight, ArrowDown } from "lucide-react";
 import { GlassCard } from "@/components/ui/glass-card";
+import { SolidCard } from "@/components/ui/solid-card";
 import { cn } from "@/lib/utils";
 
 export function DiagramPlaceholder({
@@ -12,8 +13,13 @@ export function DiagramPlaceholder({
   /** Force a vertical, single-column layout — use inside narrow containers like bento cells. */
   compact?: boolean;
 }) {
+  // Gallery (compact) usage repeats this many times in a grid, so it stays a plain
+  // surface — glassmorphism is reserved for the single floating diagram on project pages.
+  const Surface = compact ? SolidCard : GlassCard;
+  const surfaceProps = compact ? {} : { strong: true };
+
   return (
-    <GlassCard hover={false} strong className="min-w-0 p-6 sm:p-8">
+    <Surface hover={false} {...surfaceProps} className="min-w-0 p-6 sm:p-8">
       <p className="text-xs uppercase tracking-wide text-muted-foreground">{label}</p>
       <div
         className={cn(
@@ -48,6 +54,6 @@ export function DiagramPlaceholder({
           </div>
         ))}
       </div>
-    </GlassCard>
+    </Surface>
   );
 }
