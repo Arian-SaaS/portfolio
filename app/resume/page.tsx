@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Download, Mail, MapPin } from "lucide-react";
+import { Download, Mail, MapPin, Phone } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { SolidCard } from "@/components/ui/solid-card";
 import { FadeIn } from "@/components/motion/fade-in";
@@ -9,6 +9,7 @@ import { siteConfig } from "@/data/site-config";
 import { skillCategories } from "@/data/skills";
 import { experience } from "@/data/experience";
 import { projects } from "@/data/projects";
+import { resumeSummary, certifications } from "@/data/resume";
 
 export const metadata: Metadata = {
   title: "Resume",
@@ -43,12 +44,15 @@ export default function ResumePage() {
               <Mail className="size-3.5" /> {siteConfig.email}
             </span>
             <span className="flex items-center gap-2">
+              <Phone className="size-3.5" /> {siteConfig.phone}
+            </span>
+            <span className="flex items-center gap-2">
               <MapPin className="size-3.5" /> {siteConfig.location}
             </span>
           </div>
         </div>
 
-        <p className="mt-6 leading-relaxed text-muted-foreground">{siteConfig.headline}</p>
+        <p className="mt-6 leading-relaxed text-muted-foreground">{resumeSummary}</p>
 
         <div className="mt-10">
           <h2 className="font-heading text-lg font-semibold">Experience</h2>
@@ -65,13 +69,20 @@ export default function ResumePage() {
                   <p className="mt-1 text-sm leading-relaxed text-muted-foreground">
                     {entry.description}
                   </p>
+                  {entry.bullets && (
+                    <ul className="mt-2 list-disc space-y-1 pl-4 text-sm leading-relaxed text-muted-foreground marker:text-accent-cyan">
+                      {entry.bullets.map((bullet) => (
+                        <li key={bullet}>{bullet}</li>
+                      ))}
+                    </ul>
+                  )}
                 </div>
               ))}
           </div>
         </div>
 
         <div className="mt-10">
-          <h2 className="font-heading text-lg font-semibold">Education</h2>
+          <h2 className="font-heading text-lg font-semibold">Education &amp; Certifications</h2>
           <div className="mt-4 space-y-4">
             {experience
               .filter((e) => e.type === "education")
@@ -84,6 +95,12 @@ export default function ResumePage() {
                   <p className="text-sm text-accent-cyan">{entry.org}</p>
                 </div>
               ))}
+            {certifications.map((cert) => (
+              <div key={cert.name}>
+                <p className="font-medium">{cert.name}</p>
+                <p className="text-sm text-muted-foreground">{cert.status}</p>
+              </div>
+            ))}
           </div>
         </div>
 

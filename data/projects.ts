@@ -10,6 +10,7 @@ export const projects: Project[] = [
       "A multi-tenant business operating system that unifies Finance, CRM, HR, Payroll, Inventory, Vendor Management, and Projects behind a single AI-assisted executive layer.",
     heroDescription:
       "CBSai replaces a patchwork of disconnected point solutions with one modular operating system, letting mid-market and enterprise operators run finance, people, and operations from a single source of truth — with an AI layer that reasons across all of it.",
+    liveUrl: "https://cbsai.co",
     modules: [
       "Finance",
       "CRM",
@@ -51,21 +52,23 @@ export const projects: Project[] = [
       "Invested early in a permissions and tenancy layer, treating it as core infrastructure rather than a per-feature concern",
     ],
     responsibilities: [
+      "Founded the platform and lead full-stack development and architecture as the sole engineer through the current stage",
       "Owned the overall system architecture and the shared core (tenancy, RBAC, audit)",
       "Designed the module boundary contracts so Finance, CRM, HR, Payroll, Inventory, and Vendor Management could evolve independently",
-      "Led the design of the Executive AI integration layer and its permission model",
-      "Directed cloud deployment, scaling, and security posture",
+      "Built the AI/OCR integration layer and its permission model",
+      "Set up GitHub Actions CI/CD, logging, error tracking, and Cloud Run health checks for production reliability",
     ],
     techStack: [
-      "TypeScript",
       "React",
-      "Next.js",
+      "Redux",
+      "Vite",
       "Node.js",
+      "Express.js",
       "PostgreSQL",
-      "Google Cloud Platform",
-      "Cloud Functions",
+      "Google Cloud Run",
+      "GitHub Actions CI/CD",
       "OpenAI API",
-      "CI/CD",
+      "JWT / RBAC",
     ],
     results: [
       "Consolidated seven-plus point tools into a single operating system for pilot customers",

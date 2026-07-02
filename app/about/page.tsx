@@ -7,7 +7,7 @@ import { FadeIn } from "@/components/motion/fade-in";
 export const metadata: Metadata = {
   title: "About",
   description:
-    "Reza Salmanian's engineering story, philosophy, and core values as a Senior Software Engineer and Software Architect.",
+    "Reza Salmanian's engineering story, philosophy, and core values as a Full-Stack Software Engineer and Systems Architect.",
 };
 
 const values = [
@@ -46,19 +46,19 @@ export default function AboutPage() {
       </FadeIn>
       <FadeIn delay={0.05}>
         <p className="mt-6 text-lg leading-relaxed text-muted-foreground">
-          I&apos;m a senior software engineer and architect who spends most of my time on
-          systems that sit at the center of a business — the platforms finance, sales, and
-          operations teams depend on every day. My work spans full-stack engineering, cloud
-          architecture, and, more recently, AI systems that reason across an entire business
-          rather than a single feature.
+          I&apos;m a full-stack software engineer and systems architect who spends most of my
+          time on systems that sit at the center of a business — the platforms finance,
+          sales, and operations teams depend on every day. My work spans full-stack
+          engineering, secure API design, and, increasingly, AI systems that reason across a
+          whole business rather than a single feature.
         </p>
         <p className="mt-4 text-lg leading-relaxed text-muted-foreground">
           I care most about the layer where technical decisions become business outcomes:
           how a data model shapes what a company can report on, how a permissions design
           determines what an AI assistant is allowed to see, how a deployment strategy
-          affects how confidently a team can ship. That&apos;s the work I enjoy most, and the
-          reason I&apos;ve moved from feature delivery into architecture and technical
-          leadership over the course of my career.
+          affects how confidently a team can ship. That&apos;s the work I enjoy most — and the
+          reason I founded CBSai, where I own the architecture and full-stack delivery of a
+          multi-tenant SaaS platform end to end, rather than just one layer of it.
         </p>
       </FadeIn>
 

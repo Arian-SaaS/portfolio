@@ -15,10 +15,10 @@ import { skillCategories } from "@/data/skills";
 const featuredProjects = projects.slice(0, 4);
 
 const stats = [
-  { label: "Production systems shipped", value: "9" },
-  { label: "Modules architected", value: "20+" },
+  { label: "Production systems shipped", value: "8" },
+  { label: "Modules architected", value: "15+" },
   { label: "AI-native platforms", value: "2" },
-  { label: "Years building enterprise software", value: "10+" },
+  { label: "Years building production software", value: "4+" },
 ];
 
 export default function Home() {
@@ -125,8 +125,8 @@ export default function Home() {
               Let&apos;s talk about your next platform
             </h2>
             <p className="max-w-xl text-muted-foreground">
-              Open to Senior Software Engineer, Staff Engineer, Principal Engineer, Solutions
-              Architect, AI Engineer, Technical Lead, and Fractional CTO roles.
+              Open to Full-Stack Software Engineer, Systems Architect, AI Integration Engineer,
+              and Founding Engineer roles.
             </p>
             <Button asChild size="lg">
               <Link href="/contact">

@@ -11,6 +11,8 @@ export type Project = {
   summary: string;
   heroDescription: string;
   modules?: string[];
+  /** Set only for projects with a real, public live product/demo link. */
+  liveUrl?: string;
   executiveSummary: string;
   businessProblem: string;
   goals: string[];

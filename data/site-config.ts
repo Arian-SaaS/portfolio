@@ -1,21 +1,22 @@
 export const siteConfig = {
   name: "Reza Salmanian",
   titles: [
-    "Senior Software Engineer",
-    "Software Architect",
-    "AI Systems Engineer",
+    "Full-Stack Software Engineer",
+    "Systems Architect",
+    "AI Integration Engineer",
   ],
   headline:
-    "I build enterprise software that combines AI, cloud architecture, and scalable SaaS platforms to solve complex business problems.",
+    "Full-stack engineer and systems architect building production SaaS platforms, AI-enabled business applications, and secure APIs — from architecture through production release, as founder and lead engineer of CBSai.",
   email: "salmanian18@gmail.com",
-  location: "United States",
+  phone: "(916) 277-3273",
+  location: "Sacramento, CA",
   social: {
     linkedin: "https://www.linkedin.com/in/reza-sal1",
     github: "https://github.com/Arian-SaaS",
   },
   url: "https://www.rezasalmanian.com",
   description:
-    "Portfolio of Reza Salmanian — Senior Software Engineer, Software Architect, and AI Systems Engineer specializing in enterprise SaaS, cloud architecture, and AI-driven business platforms.",
+    "Portfolio of Reza Salmanian — Full-Stack Software Engineer and Systems Architect, founder of CBSai, specializing in production SaaS platforms, secure API design, and LLM-integrated business applications.",
 } as const;
 
 export type NavItem = {

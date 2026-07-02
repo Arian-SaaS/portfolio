@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { ArrowLeft, ArrowRight } from "lucide-react";
+import { ArrowLeft, ArrowRight, ExternalLink } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { GlassCard } from "@/components/ui/glass-card";
@@ -79,6 +79,13 @@ export default async function ProjectPage({
             <p className="mt-6 max-w-2xl text-balance text-lg text-muted-foreground">
               {project.heroDescription}
             </p>
+            {project.liveUrl && (
+              <Button asChild className="mt-6" size="lg">
+                <a href={project.liveUrl} target="_blank" rel="noreferrer">
+                  Visit Live Site <ExternalLink className="size-4" />
+                </a>
+              </Button>
+            )}
             {project.modules && (
               <div className="mt-8 flex flex-wrap gap-2">
                 {project.modules.map((m) => (
