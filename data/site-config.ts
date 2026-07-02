@@ -13,7 +13,7 @@ export const siteConfig = {
     linkedin: "https://linkedin.com/in/reza-salmanian",
     github: "https://github.com/reza-salmanian",
   },
-  url: "https://rezasalmanian.dev",
+  url: "https://rezasalmanian.com",
   description:
     "Portfolio of Reza Salmanian — Senior Software Engineer, Software Architect, and AI Systems Engineer specializing in enterprise SaaS, cloud architecture, and AI-driven business platforms.",
 } as const;

@@ -1,18 +1,33 @@
+import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight, Download, Mail } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { FadeIn } from "@/components/motion/fade-in";
 import { GithubIcon, LinkedinIcon } from "@/components/icons/brand-icons";
 import { siteConfig } from "@/data/site-config";
+import { getProfilePhotoUrl } from "@/lib/profile-photo";
 
 export function Hero() {
+  const photoUrl = getProfilePhotoUrl();
+
   return (
     <section className="relative overflow-hidden">
       <div className="hero-gradient absolute inset-0 -z-10" aria-hidden />
       <div className="mx-auto flex max-w-4xl flex-col items-center px-4 py-24 text-center sm:px-6 sm:py-32 lg:px-8">
         <FadeIn>
-          <div className="mx-auto flex size-24 items-center justify-center rounded-full glass-panel text-2xl font-semibold text-muted-foreground sm:size-28">
-            RS
+          <div className="mx-auto flex size-24 items-center justify-center overflow-hidden rounded-full glass-panel text-2xl font-semibold text-muted-foreground sm:size-28">
+            {photoUrl ? (
+              <Image
+                src={photoUrl}
+                alt={siteConfig.name}
+                width={112}
+                height={112}
+                priority
+                className="size-full object-cover"
+              />
+            ) : (
+              "RS"
+            )}
           </div>
         </FadeIn>
 
