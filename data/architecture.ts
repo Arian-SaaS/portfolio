@@ -20,7 +20,6 @@ export type ArchitectureDiagram = {
   title: string;
   description: string;
   nodes: ArchitectureNode[];
-  size: "sm" | "md" | "lg";
   icon: ArchitectureIcon;
 };
 
@@ -52,7 +51,6 @@ export const architectureDiagrams: ArchitectureDiagram[] = [
         tech: ["PostgreSQL"],
       },
     ],
-    size: "lg",
     icon: "layers",
   },
   {
@@ -77,7 +75,6 @@ export const architectureDiagrams: ArchitectureDiagram[] = [
         tech: ["PostgreSQL"],
       },
     ],
-    size: "md",
     icon: "users",
   },
   {
@@ -102,7 +99,6 @@ export const architectureDiagrams: ArchitectureDiagram[] = [
         tech: ["JWT", "Express.js"],
       },
     ],
-    size: "sm",
     icon: "key",
   },
   {
@@ -127,7 +123,6 @@ export const architectureDiagrams: ArchitectureDiagram[] = [
         tech: ["RBAC", "OpenAI API"],
       },
     ],
-    size: "md",
     icon: "shield",
   },
   {
@@ -156,7 +151,6 @@ export const architectureDiagrams: ArchitectureDiagram[] = [
         tech: ["LLM Integration"],
       },
     ],
-    size: "lg",
     icon: "bot",
   },
   {
@@ -184,7 +178,6 @@ export const architectureDiagrams: ArchitectureDiagram[] = [
         detail: "Synthesized reply, with graceful fallback to text if voice fails.",
       },
     ],
-    size: "md",
     icon: "audio",
   },
   {
@@ -214,7 +207,6 @@ export const architectureDiagrams: ArchitectureDiagram[] = [
         tech: ["PostgreSQL"],
       },
     ],
-    size: "sm",
     icon: "webhook",
   },
   {
@@ -239,7 +231,6 @@ export const architectureDiagrams: ArchitectureDiagram[] = [
         tech: ["PostgreSQL"],
       },
     ],
-    size: "md",
     icon: "database",
   },
   {
@@ -269,7 +260,6 @@ export const architectureDiagrams: ArchitectureDiagram[] = [
         tech: ["Docker"],
       },
     ],
-    size: "lg",
     icon: "cloud",
   },
 ];
