@@ -8,6 +8,7 @@ import { SolidCard } from "@/components/ui/solid-card";
 import { Button } from "@/components/ui/button";
 import { FadeIn } from "@/components/motion/fade-in";
 import { StaggerContainer, StaggerItem } from "@/components/motion/stagger";
+import { AnimatedCounter } from "@/components/motion/animated-counter";
 import { BentoGrid, BentoCard } from "@/components/ui/bento-grid";
 import { SystemHealthPanel } from "@/components/dashboard/system-health-panel";
 import { projects } from "@/data/projects";
@@ -16,10 +17,10 @@ import { skillCategories } from "@/data/skills";
 const featuredProjects = projects.slice(0, 4);
 
 const stats = [
-  { label: "Production systems shipped", value: "8" },
-  { label: "Modules architected", value: "15+" },
-  { label: "AI-native platforms", value: "2" },
-  { label: "Years building production software", value: "4+" },
+  { label: "Production systems shipped", value: 8, suffix: "" },
+  { label: "Modules architected", value: 15, suffix: "+" },
+  { label: "AI-native platforms", value: 2, suffix: "" },
+  { label: "Years building production software", value: 4, suffix: "+" },
 ];
 
 export default function Home() {
@@ -33,7 +34,7 @@ export default function Home() {
             <StaggerItem key={stat.label}>
               <SolidCard className="p-6 text-center" hover={false}>
                 <p className="font-heading text-3xl font-semibold text-accent-cyan">
-                  {stat.value}
+                  <AnimatedCounter value={stat.value} suffix={stat.suffix} />
                 </p>
                 <p className="mt-2 text-xs text-muted-foreground">{stat.label}</p>
               </SolidCard>
