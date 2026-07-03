@@ -9,6 +9,7 @@ import { Button } from "@/components/ui/button";
 import { FadeIn } from "@/components/motion/fade-in";
 import { StaggerContainer, StaggerItem } from "@/components/motion/stagger";
 import { BentoGrid, BentoCard } from "@/components/ui/bento-grid";
+import { SystemHealthPanel } from "@/components/dashboard/system-health-panel";
 import { projects } from "@/data/projects";
 import { skillCategories } from "@/data/skills";
 
@@ -39,6 +40,21 @@ export default function Home() {
             </StaggerItem>
           ))}
         </StaggerContainer>
+      </section>
+
+      <section className="mx-auto max-w-6xl px-4 pb-24 sm:px-6 lg:px-8">
+        <FadeIn>
+          <SectionHeading
+            eyebrow="Platform Health"
+            title="Built with production observability in mind"
+            description="The kind of health dashboard I build into every platform I ship — uptime, latency, deploy frequency, and error rate, at a glance."
+          />
+        </FadeIn>
+        <FadeIn delay={0.1}>
+          <div className="mt-10">
+            <SystemHealthPanel />
+          </div>
+        </FadeIn>
       </section>
 
       <section className="mx-auto max-w-6xl px-4 pb-24 sm:px-6 lg:px-8">

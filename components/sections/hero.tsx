@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button";
 import { FadeIn } from "@/components/motion/fade-in";
 import { GithubIcon, LinkedinIcon } from "@/components/icons/brand-icons";
 import { HeroScene } from "@/components/three/hero-scene";
-import { CodeSnippetCard } from "@/components/sections/code-snippet-card";
+import { HeroTerminal } from "@/components/sections/hero-terminal";
 import { GridBeams } from "@/components/effects/grid-beams";
 import { siteConfig } from "@/data/site-config";
 import { getProfilePhotoUrl } from "@/lib/profile-photo";
@@ -87,7 +87,7 @@ export function Hero() {
 
         <FadeIn delay={0.25} className="relative mx-auto w-full max-w-md">
           <HeroScene />
-          <CodeSnippetCard className="mx-auto mt-8 w-full max-w-xs rotate-0 sm:max-w-sm lg:absolute lg:-bottom-6 lg:-left-6 lg:mt-0 lg:w-72 lg:max-w-none lg:-rotate-2" />
+          <HeroTerminal className="mx-auto mt-8 w-full max-w-xs rotate-0 sm:max-w-sm lg:absolute lg:-bottom-6 lg:-left-6 lg:mt-0 lg:w-72 lg:max-w-none lg:-rotate-2" />
         </FadeIn>
       </div>
     </section>
