@@ -10,9 +10,11 @@ import { FadeIn } from "@/components/motion/fade-in";
 import { ProjectSection, ProjectList } from "@/components/project/project-section";
 import { ScreenshotPlaceholder } from "@/components/project/screenshot-placeholder";
 import { FlowDiagram } from "@/components/architecture/flow-diagram";
+import { CodeTabs } from "@/components/project/code-tabs";
 import { DashboardPreview } from "@/components/dashboard/dashboard-preview";
 import { projects, getProjectBySlug } from "@/data/projects";
 import { financeDashboard, executiveDashboard } from "@/data/dashboard-preview";
+import { codeSamples } from "@/data/code-samples";
 
 const dashboardPreviews = {
   "finance-platform": { data: financeDashboard, valueFormat: "currencyK" },
@@ -50,6 +52,7 @@ export default async function ProjectPage({
   const nextProject = projects[(currentIndex + 1) % projects.length];
   const dashboardPreview =
     dashboardPreviews[slug as keyof typeof dashboardPreviews];
+  const codeTabs = codeSamples[slug];
 
   return (
     <article>
@@ -161,6 +164,16 @@ export default async function ProjectPage({
           </p>
           <FlowDiagram items={project.diagram.nodes} />
         </ProjectSection>
+
+        {codeTabs && (
+          <ProjectSection title="Code Perspective">
+            <p className="mb-4 text-sm text-muted-foreground">
+              A representative pattern from each layer — illustrative, not extracted from
+              production source.
+            </p>
+            <CodeTabs tabs={codeTabs} />
+          </ProjectSection>
+        )}
 
         <ProjectSection title="Technical Challenges">
           <ProjectList items={project.technicalChallenges} />
