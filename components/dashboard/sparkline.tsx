@@ -1,3 +1,5 @@
+import { cn } from "@/lib/utils";
+
 export function Sparkline({
   data,
   className,
@@ -23,9 +25,8 @@ export function Sparkline({
   return (
     <svg
       viewBox={`0 0 ${width} ${height}`}
-      className={className}
-      width={width}
-      height={height}
+      preserveAspectRatio="none"
+      className={cn("h-7 w-full shrink-0 sm:w-24", className)}
       aria-hidden="true"
     >
       <path d={path} fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" opacity={0.35} />
