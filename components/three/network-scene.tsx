@@ -74,6 +74,7 @@ export function NetworkScene() {
       camera={{ position: [0, 0, 4.2], fov: 45 }}
       gl={{ antialias: true, alpha: true }}
       dpr={[1, 1.75]}
+      frameloop={reduceMotion ? "demand" : "always"}
     >
       <Float speed={reduceMotion ? 0 : 1.4} rotationIntensity={0.3} floatIntensity={0.6}>
         <ArchitectureGraph reduceMotion={reduceMotion} />
