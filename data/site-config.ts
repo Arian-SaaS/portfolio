@@ -4,6 +4,7 @@ export const siteConfig = {
     "Full-Stack Software Engineer",
     "Systems Architect",
     "AI Integration Engineer",
+    "Forward Deployed Engineer",
   ],
   headline:
     "Full-stack engineer and systems architect building production SaaS platforms, AI-enabled business applications, and secure APIs — from architecture through production release, as founder and lead engineer of CBSai.",

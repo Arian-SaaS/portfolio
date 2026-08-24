@@ -143,7 +143,7 @@ export default function Home() {
             </h2>
             <p className="max-w-xl text-muted-foreground">
               Open to Full-Stack Software Engineer, Systems Architect, AI Integration Engineer,
-              and Founding Engineer roles.
+              Forward Deployed Engineer, and Founding Engineer roles.
             </p>
             <Button asChild size="lg">
               <Link href="/contact">

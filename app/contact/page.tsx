@@ -25,7 +25,8 @@ export default function ContactPage() {
         <SectionHeading
           eyebrow="Contact"
           title="Let's talk"
-          description="Open to Full-Stack Software Engineer, Systems Architect, AI Integration Engineer, and Founding Engineer roles."
+          description="Open to Full-Stack Software Engineer, Systems Architect, AI Integration Engineer,
+              Forward Deployed Engineer, and Founding Engineer roles."
         />
       </FadeIn>
 

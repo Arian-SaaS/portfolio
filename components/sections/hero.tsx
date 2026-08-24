@@ -1,95 +1,116 @@
-import Image from "next/image";
+"use client";
+
 import Link from "next/link";
 import { ArrowRight, Download, Mail } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { FadeIn } from "@/components/motion/fade-in";
 import { GithubIcon, LinkedinIcon } from "@/components/icons/brand-icons";
-import { HeroScene } from "@/components/three/hero-scene";
-import { HeroTerminal } from "@/components/sections/hero-terminal";
-import { GridBeams } from "@/components/effects/grid-beams";
+import { BlackHoleHeroSection } from "@/components/ui/blackhole-hero-section";
+import { useMediaQuery } from "@/hooks/use-media-query";
 import { siteConfig } from "@/data/site-config";
-import { getProfilePhotoUrl } from "@/lib/profile-photo";
+
+/** Viewport height less the sticky navbar, so the hero fills exactly what is left. */
+const FILL = "min-h-[calc(100svh-4rem)]";
 
 export function Hero() {
-  const photoUrl = getProfilePhotoUrl();
+  const narrow = useMediaQuery("(max-width: 767px)");
 
   return (
-    <section className="relative overflow-hidden">
-      <div className="hero-gradient absolute inset-0 -z-10" aria-hidden />
-      <GridBeams className="-z-10" />
-      <div className="mx-auto grid max-w-6xl items-center gap-16 px-4 py-24 sm:px-6 sm:py-32 lg:grid-cols-2 lg:px-8">
-        <div className="flex flex-col items-center text-center lg:items-start lg:text-left">
-          <FadeIn>
-            <div className="flex size-24 items-center justify-center overflow-hidden rounded-full glass-panel text-2xl font-semibold text-muted-foreground sm:size-28">
-              {photoUrl ? (
-                <Image
-                  src={photoUrl}
-                  alt={siteConfig.name}
-                  width={112}
-                  height={112}
-                  priority
-                  className="size-full object-cover"
-                />
-              ) : (
-                "RS"
-              )}
-            </div>
-          </FadeIn>
+    <section className="relative">
+      <BlackHoleHeroSection
+        /*
+         * `dark` is doing real work here, not decoration. The hero is a dark
+         * island in both themes, and every control inside it — Button, the
+         * muted body copy, the hairline borders — paints from the same design
+         * tokens as the rest of the site. Scoping the token layer to dark is
+         * what keeps an outline Button legible on black while the visitor has
+         * the site in light mode, without a single bespoke colour override.
+         *
+         * `text-foreground` has to be restated here and cannot be left to
+         * inherit: `body` resolves `var(--foreground)` against the light
+         * palette and passes down the *computed* colour, so descendants would
+         * inherit near-black text however the tokens are scoped. Setting it on
+         * the element that carries `dark` re-resolves it against the dark
+         * value, and everything below — ghost Buttons especially, which carry
+         * no colour of their own — inherits from that instead.
+         */
+        className={`dark text-foreground ${FILL} md:min-h-[680px]`}
+        /*
+         * A phone has no room to stand the art beside the copy, so the
+         * arrangement turns through 90 degrees: copy at the top under a veil,
+         * the hole low and whole in the bottom third. Not pushed off the edge
+         * — half a hole reads as a mistake. A wider field makes up the room
+         * the narrow frame lost, and the step count comes down because a
+         * phone pays for every ray.
+         */
+        focus={narrow ? [0.5, 0.78] : [0.72, 0.46]}
+        scrim={narrow ? "top" : "left"}
+        scrimStrength={0.92}
+        elevation={narrow ? -7 : -5.5}
+        fov={narrow ? 58 : 42}
+        glow={narrow ? 0.85 : 1}
+        steps={narrow ? 200 : 300}
+        resolution={narrow ? 0.6 : 0.7}
+      >
+        <div
+          className={`mx-auto flex ${FILL} max-w-6xl items-start px-4 pt-16 sm:px-6 md:min-h-[680px] md:items-center md:pt-0 lg:px-8`}
+        >
+          <div className="max-w-xl py-12 md:py-0">
+            <FadeIn>
+              <h1 className="font-heading text-4xl font-semibold tracking-tight text-foreground sm:text-6xl">
+                {siteConfig.name}
+              </h1>
+            </FadeIn>
 
-          <FadeIn delay={0.05}>
-            <h1 className="mt-8 font-heading text-4xl font-semibold tracking-tight sm:text-6xl">
-              {siteConfig.name}
-            </h1>
-          </FadeIn>
+            <FadeIn delay={0.05}>
+              <p className="mt-4 text-sm font-medium text-accent-cyan sm:text-base">
+                {siteConfig.titles.join("  ·  ")}
+              </p>
+            </FadeIn>
 
-          <FadeIn delay={0.1}>
-            <p className="mt-3 text-sm font-medium text-accent-cyan sm:text-base">
-              {siteConfig.titles.join("  ·  ")}
-            </p>
-          </FadeIn>
+            <FadeIn delay={0.1}>
+              <p className="mt-6 text-balance text-lg leading-relaxed text-muted-foreground">
+                {siteConfig.headline}
+              </p>
+            </FadeIn>
 
-          <FadeIn delay={0.15}>
-            <p className="mt-6 max-w-2xl text-balance text-lg text-muted-foreground">
-              {siteConfig.headline}
-            </p>
-          </FadeIn>
+            <FadeIn delay={0.15}>
+              <div className="mt-10 flex flex-wrap items-center gap-3">
+                <Button asChild size="lg">
+                  <Link href="/projects">
+                    View Projects <ArrowRight className="size-4" />
+                  </Link>
+                </Button>
+                <Button asChild size="lg" variant="outline">
+                  <Link href="/resume">
+                    <Download className="size-4" /> Resume
+                  </Link>
+                </Button>
+              </div>
+            </FadeIn>
 
-          <FadeIn delay={0.2}>
-            <div className="mt-10 flex flex-wrap items-center justify-center gap-3 lg:justify-start">
-              <Button asChild size="lg">
-                <Link href="/projects">
-                  View Projects <ArrowRight className="size-4" />
-                </Link>
-              </Button>
-              <Button asChild size="lg" variant="outline">
-                <Link href="/resume">
-                  <Download className="size-4" /> Resume
-                </Link>
-              </Button>
-              <Button asChild size="lg" variant="ghost">
-                <a href={siteConfig.social.linkedin} target="_blank" rel="noreferrer">
-                  <LinkedinIcon className="size-4" /> LinkedIn
-                </a>
-              </Button>
-              <Button asChild size="lg" variant="ghost">
-                <a href={siteConfig.social.github} target="_blank" rel="noreferrer">
-                  <GithubIcon className="size-4" /> GitHub
-                </a>
-              </Button>
-              <Button asChild size="lg" variant="ghost">
-                <Link href="/contact">
-                  <Mail className="size-4" /> Contact
-                </Link>
-              </Button>
-            </div>
-          </FadeIn>
+            <FadeIn delay={0.2}>
+              <div className="mt-6 flex flex-wrap items-center gap-1">
+                <Button asChild variant="ghost" size="sm">
+                  <a href={siteConfig.social.linkedin} target="_blank" rel="noreferrer">
+                    <LinkedinIcon className="size-4" /> LinkedIn
+                  </a>
+                </Button>
+                <Button asChild variant="ghost" size="sm">
+                  <a href={siteConfig.social.github} target="_blank" rel="noreferrer">
+                    <GithubIcon className="size-4" /> GitHub
+                  </a>
+                </Button>
+                <Button asChild variant="ghost" size="sm">
+                  <Link href="/contact">
+                    <Mail className="size-4" /> Contact
+                  </Link>
+                </Button>
+              </div>
+            </FadeIn>
+          </div>
         </div>
-
-        <FadeIn delay={0.25} className="relative mx-auto w-full max-w-md">
-          <HeroScene />
-          <HeroTerminal className="mx-auto mt-8 w-full max-w-xs rotate-0 sm:max-w-sm lg:absolute lg:-bottom-6 lg:-left-6 lg:mt-0 lg:w-72 lg:max-w-none lg:-rotate-2" />
-        </FadeIn>
-      </div>
+      </BlackHoleHeroSection>
     </section>
   );
 }
