@@ -15,10 +15,10 @@ export function GlassCard({
   return (
     <div
       className={cn(
-        "rounded-2xl shadow-xl shadow-black/5 dark:shadow-black/30",
+        "elev rounded-2xl",
         strong ? "glass-panel-strong" : "glass-panel",
         hover &&
-          "transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl hover:shadow-accent-blue/10",
+          "elev-interactive hover:-translate-y-1",
         className
       )}
       {...props}

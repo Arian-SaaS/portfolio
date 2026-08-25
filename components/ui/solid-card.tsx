@@ -13,9 +13,8 @@ export function SolidCard({ className, hover = true, ...props }: SolidCardProps)
   return (
     <div
       className={cn(
-        "rounded-2xl border border-border bg-surface shadow-sm",
-        hover &&
-          "transition-all duration-300 hover:-translate-y-0.5 hover:border-accent-cyan/30 hover:shadow-md",
+        "elev rounded-2xl border border-border bg-surface",
+        hover && "elev-interactive hover:-translate-y-0.5 hover:border-accent-cyan/30",
         className
       )}
       {...props}

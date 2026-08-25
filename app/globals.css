@@ -95,8 +95,21 @@
   --glass-bg-strong: rgba(255, 255, 255, 0.75);
   --glass-border: rgba(11, 31, 58, 0.08);
   --hero-vignette: transparent;
-  --page-glow-1: transparent;
-  --page-glow-2: transparent;
+  /* A flat white page is as lifeless as a flat black one. These are barely
+     visible on their own and do the same job the dark ones do: give the ground
+     a direction so it is not one uniform sheet. */
+  --page-glow-1: rgba(13, 148, 136, 0.06);
+  --page-glow-2: rgba(198, 168, 124, 0.05);
+
+  /* Elevation. Tinted, not grey: a neutral drop shadow on a white page reads as
+     dirt under the card, where a shadow carrying a little of the accent reads
+     as light with a colour to it. */
+  --elev-1:
+    0 1px 2px rgba(15, 40, 50, 0.05),
+    0 6px 20px rgba(15, 118, 110, 0.07);
+  --elev-2:
+    0 2px 6px rgba(15, 40, 50, 0.07),
+    0 16px 40px rgba(15, 118, 110, 0.14);
   --surface: #ffffff;
   --status-good: #16a34a;
   --status-warning: #d97706;
@@ -169,6 +182,29 @@
      wider than cold, so matched opacities do not read as matched. */
   --page-glow-1: rgba(45, 212, 191, 0.06);
   --page-glow-2: rgba(214, 195, 165, 0.035);
+
+  /* Elevation in the dark, which is a different problem entirely.
+
+     A black drop shadow on a dark ground is invisible — there is nothing for it
+     to darken. That is the whole reason the page felt flat: every card carried
+     shadow-sm, every shadow did nothing, and eight panels sat on exactly one
+     plane with only their borders separating them.
+
+     What reads as depth on dark UI is the inset highlight on the first line:
+     one pixel of light along the top edge, as if a source above the page were
+     catching the lip of the card. The dark drop underneath still does real work
+     against the panel edges, and the hover state adds an ambient glow in the
+     accent — --card-accent when the card names one, so a skills card glows in
+     its own colour, falling back to the turquoise everywhere else. */
+  --elev-1:
+    inset 0 1px 0 0 rgba(255, 255, 255, 0.045),
+    0 1px 2px rgba(0, 0, 0, 0.5),
+    0 10px 30px rgba(0, 0, 0, 0.45);
+  --elev-2:
+    inset 0 1px 0 0 rgba(255, 255, 255, 0.085),
+    0 2px 6px rgba(0, 0, 0, 0.55),
+    0 18px 44px rgba(0, 0, 0, 0.55),
+    0 0 30px color-mix(in srgb, var(--card-accent, var(--accent-cyan)) 16%, transparent);
   --surface: #161b22;
   --status-good: #3fb950;
   --status-warning: #d29922;
@@ -273,6 +309,18 @@
 
      Below the fold FadeIn is still the right tool: those elements are not LCP
      candidates and genuinely should wait until they are scrolled to. */
+  /* Elevation, read from the tokens above so light and dark can solve it in
+     completely different ways behind one class name. */
+  .elev {
+    box-shadow: var(--elev-1);
+  }
+  .elev-interactive {
+    transition: box-shadow 300ms, transform 300ms, border-color 300ms;
+  }
+  .elev-interactive:hover {
+    box-shadow: var(--elev-2);
+  }
+
   /* ---- type scale --------------------------------------------------------
 
      One ladder, five rungs, used everywhere. Before this the site had headings
