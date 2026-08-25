@@ -113,7 +113,7 @@ export const projects: Project[] = [
     executiveSummary:
       "Artemis is an AI layer purpose-built for executive decision-making: conversational and voice-driven, with cross-module business reasoning and long-term context, designed to replace the reflex of building another static dashboard every time leadership has a new question.",
     businessProblem:
-      "Traditional dashboards answer the questions they were built to answer, and nothing else. Every new leadership question — 'why did margin drop in the region with the new hires' — becomes a request to an analyst or a new dashboard ticket. Executives needed a way to ask ad hoc, cross-functional questions and get a governed, data-backed answer immediately, in the format that fits how they actually work — including by voice, in meetings.",
+      "Traditional dashboards answer the questions they were built to answer, and nothing else. Every new leadership question — “why did margin drop in the region with the new hires” — becomes a request to an analyst or a new dashboard ticket. Executives needed a way to ask ad hoc, cross-functional questions and get a governed, data-backed answer immediately, in the format that fits how they actually work — including by voice, in meetings.",
     goals: [
       "Answer ad hoc business questions across modules instead of only the metrics a dashboard was designed to show",
       "Support real-time voice interaction suitable for use during meetings, not just typed queries",

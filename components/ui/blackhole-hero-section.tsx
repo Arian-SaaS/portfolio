@@ -78,7 +78,7 @@ export interface BlackHoleHeroSectionProps
    * This and the two below take either a literal hex (`#22d3ee`) or a CSS
    * custom property (`--bh-mid`, or `var(--bh-mid)`), which is how the hero
    * stays on the same palette as the rest of the site: the ramp lives in
-   * `globals.css` with every other design token and this file holds no colours
+   * `globals.css` with every other design token and this file holds no colors
    * of its own beyond a fallback for when a token is missing.
    *
    * A token must resolve to plain 3- or 6-digit hex. The shader parses the
@@ -112,7 +112,7 @@ export interface BlackHoleHeroSectionProps
   maxDpr?: number;
   /**
    * Where the hole sits in the frame, as fractions of width and height, top
-   * left origin. [0.5, 0.5] centres it. The default puts it high and right,
+   * left origin. [0.5, 0.5] centers it. The default puts it high and right,
    * which is where the film frames it and which leaves the reading half of a
    * hero clear.
    */
@@ -234,7 +234,7 @@ float fbm(vec3 p, float lod) {
 /* --- the gas -------------------------------------------------------------- */
 
 /**
- * Density and colour of the disc at a point.
+ * Density and color of the disc at a point.
  *
  * The gas runs on Kepler orbits, so the inner rim laps the outer edge many
  * times over. Reading the turbulence in a frame that turns with the gas, at
@@ -296,7 +296,7 @@ void gasAt(vec3 p, float rd, float dt, out float dens, out vec3 tint, out float 
 
   dens = max(0.0, filaments * 1.5 - 0.30) * sheet * prof * uDensity * 4.6;
 
-  // Shakura–Sunyaev: T falls as r^-3/4. The colour ramp rides it.
+  // Shakura–Sunyaev: T falls as r^-3/4. The color ramp rides it.
   heat = pow(uDiskIn / rd, 0.8) * (0.72 + 0.55 * clouds);
   tint = mix(uCool, uMid, smoothstep(0.10, 0.52, heat));
   tint = mix(tint, uHot, smoothstep(0.52, 1.05, heat));
@@ -570,7 +570,7 @@ void main() {
   c *= 1.0 - uVignette * dot(d, d) * 1.9;
 
   // The edge the copy sits on: heavy at the edge, off quickly, so the middle
-  // of the frame keeps its contrast instead of going grey.
+  // of the frame keeps its contrast instead of going gray.
   if (uScrimDir > 0.5) {
     float x = uScrimDir < 1.5 ? vUv.x
             : uScrimDir < 2.5 ? 1.0 - vUv.x
@@ -623,7 +623,7 @@ function hexToLinear(hex: string): [number, number, number] | null {
 }
 
 /**
- * Resolves a colour prop that may be a literal hex or a CSS custom property,
+ * Resolves a color prop that may be a literal hex or a CSS custom property,
  * so the palette can live in the stylesheet with the rest of the design tokens
  * instead of being frozen into this file.
  *
@@ -744,7 +744,7 @@ export function BlackHoleHeroSection({
    * of it waits for idle.
    *
    * Nothing is lost by waiting: the host is already painted in `--bh-void`, so
-   * the frame is the right colour from the first paint and only the picture
+   * the frame is the right color from the first paint and only the picture
    * inside it arrives a beat later.
    */
   const [booted, setBooted] = React.useState(false);
@@ -1226,7 +1226,7 @@ export function BlackHoleHeroSection({
     const themeWatch = new MutationObserver(() => {
       colors.clear();
       // The running average is holding frames painted in the old ramp. Throw
-      // it away, or the new colour fades in over a second and a half.
+      // it away, or the new color fades in over a second and a half.
       settled = 0;
       if (reduced || props.current.paused) settle(16);
     });

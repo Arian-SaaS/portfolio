@@ -37,7 +37,7 @@ const iconMap: Record<SkillIcon, LucideIcon> = {
 /**
  * Semantic accent name to palette token. One indirection, and it stops here —
  * the card sets --card-accent from this and the .accent-* rules in globals.css
- * do the rest. Nothing downstream needs to know which colour it got.
+ * do the rest. Nothing downstream needs to know which color it got.
  */
 const accentToken: Record<SkillAccent, string> = {
   cyan: "var(--accent-cyan)",
@@ -92,7 +92,7 @@ export default function SkillsPage() {
                 <p className="mt-3 t-body">{cat.blurb}</p>
 
                 {/* A hairline in the category accent, so the eye can group the
-                    grid by colour without the pills themselves being coloured —
+                    grid by color without the pills themselves being colored —
                     45 tinted pills would be noise, one rule per card is not. */}
                 <span className="accent-rule mt-4 h-px w-10 rounded-full" aria-hidden />
 

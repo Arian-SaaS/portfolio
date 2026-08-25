@@ -26,7 +26,7 @@ export function SectionHeading({
    * precisely what the heading was changed to stop being.
    *
    * A two-hue gradient is only safe between neighbours on the wheel. Across
-   * complements, use one colour.
+   * complements, use one color.
    */
   titleTone?: "default" | "accent";
 }) {

@@ -69,7 +69,7 @@
   /* ---- hero render ramp -------------------------------------------------
      Read by the WebGL hero at runtime. Keep these as plain 3- or 6-digit hex:
      the shader parses them itself and cannot read oklch(), color-mix(), or any
-     other colour function.
+     other color function.
 
      The ramp runs cool -> warm on purpose. Gas at the inner rim is the hottest
      thing in the frame, so it lands on the sand; the outer disc cools through
@@ -88,35 +88,48 @@
   --navy-deep: #060f1f;
   --accent-blue: #2563eb;
   /* teal-700, not teal-600: --accent-cyan is used as text in 19 places and
-     teal-600 on white is 3.74:1, under the 4.5 AA floor. */
+     teal-600 lands at 3.74:1 on a light ground, under the 4.5 AA floor. */
   --accent-cyan: #0f766e;
-  --accent-sand: #8a6d43;
-  --glass-bg: rgba(255, 255, 255, 0.55);
-  --glass-bg-strong: rgba(255, 255, 255, 0.75);
-  --glass-border: rgba(11, 31, 58, 0.08);
+  /* Darkened from #8a6d43, which cleared AA on the tinted ground by 0.01 —
+     technically a pass and no margin at all for a font weight change. */
+  --accent-sand: #7d6139;
+  --glass-bg: rgba(255, 255, 255, 0.65);
+  --glass-bg-strong: rgba(255, 255, 255, 0.82);
+  --glass-border: rgba(15, 118, 110, 0.12);
   --hero-vignette: transparent;
-  /* A flat white page is as lifeless as a flat black one. These are barely
-     visible on their own and do the same job the dark ones do: give the ground
-     a direction so it is not one uniform sheet. */
-  --page-glow-1: rgba(13, 148, 136, 0.06);
-  --page-glow-2: rgba(198, 168, 124, 0.05);
 
-  /* Elevation. Tinted, not grey: a neutral drop shadow on a white page reads as
-     dirt under the card, where a shadow carrying a little of the accent reads
-     as light with a colour to it. */
+  /* The wash. Considerably stronger than a first pass at this, which was so
+     faint it may as well have been the transparent it replaced. A white page
+     needs more of it than a dark one, not less: colored light on a dark ground
+     glows, and the same light on white only tints. */
+  --page-glow-1: rgba(13, 148, 136, 0.13);
+  --page-glow-2: rgba(200, 150, 80, 0.10);
+
+  /* Elevation, tinted rather than gray. A neutral drop shadow on a white page
+     reads as dirt under the card; a shadow carrying some of the accent reads
+     as light with a color to it. Three layers because one is a hard edge and
+     three is a falloff. */
   --elev-1:
-    0 1px 2px rgba(15, 40, 50, 0.05),
-    0 6px 20px rgba(15, 118, 110, 0.07);
+    0 1px 2px rgba(12, 45, 50, 0.05),
+    0 4px 10px rgba(15, 118, 110, 0.07),
+    0 12px 32px rgba(15, 118, 110, 0.09);
   --elev-2:
-    0 2px 6px rgba(15, 40, 50, 0.07),
-    0 16px 40px rgba(15, 118, 110, 0.14);
+    0 2px 6px rgba(12, 45, 50, 0.07),
+    0 10px 24px rgba(15, 118, 110, 0.14),
+    0 28px 60px rgba(15, 118, 110, 0.16);
+
   --surface: #ffffff;
   --status-good: #16a34a;
   --status-warning: #d97706;
   --status-serious: #ea580c;
   --status-critical: #dc2626;
 
-  --background: #ffffff;
+  /* The ground is tinted and the cards are white, which is the entire reason
+     the light theme reads as flat without it: --background, --surface, --card
+     and --popover were all #ffffff, so a card was the same color as the page it
+     sat on and only a 1px border said otherwise. Now the cards sit above the
+     ground and the shadow has something to fall on. */
+  --background: #f3f8f8;
   --foreground: #0b1220;
   --card: #ffffff;
   --card-foreground: #0b1220;
@@ -124,15 +137,15 @@
   --popover-foreground: #0b1220;
   --primary: #0f766e;
   --primary-foreground: #ffffff;
-  --secondary: #f1f5f9;
+  --secondary: #e6f0ef;
   --secondary-foreground: #0f766e;
-  --muted: #f1f5f9;
-  --muted-foreground: #475569;
+  --muted: #e6f0ef;
+  --muted-foreground: #4a5b64;
   --accent: #ccfbf1;
   --accent-foreground: #0f766e;
   --destructive: oklch(0.577 0.245 27.325);
-  --border: #e2e8f0;
-  --input: #e2e8f0;
+  --border: #d6e4e3;
+  --input: #d6e4e3;
   --ring: #0d9488;
   --chart-1: oklch(0.87 0 0);
   --chart-2: oklch(0.556 0 0);
@@ -140,15 +153,16 @@
   --chart-4: oklch(0.371 0 0);
   --chart-5: oklch(0.269 0 0);
   --radius: 0.75rem;
-  --sidebar: #f8fafc;
+  --sidebar: #eef5f5;
   --sidebar-foreground: #0b1220;
   --sidebar-primary: #0f766e;
   --sidebar-primary-foreground: #ffffff;
-  --sidebar-accent: #f1f5f9;
+  --sidebar-accent: #e6f0ef;
   --sidebar-accent-foreground: #0f766e;
-  --sidebar-border: #e2e8f0;
+  --sidebar-border: #d6e4e3;
   --sidebar-ring: #0d9488;
 }
+
 
 
 .dark {
@@ -195,7 +209,7 @@
      catching the lip of the card. The dark drop underneath still does real work
      against the panel edges, and the hover state adds an ambient glow in the
      accent — --card-accent when the card names one, so a skills card glows in
-     its own colour, falling back to the turquoise everywhere else. */
+     its own color, falling back to the turquoise everywhere else. */
   --elev-1:
     inset 0 1px 0 0 rgba(255, 255, 255, 0.045),
     0 1px 2px rgba(0, 0, 0, 0.5),
@@ -258,7 +272,7 @@
   }
 
   /* An ambient turquoise wash over the flat ground, so the page carries the
-     colour of the hero the whole way down instead of falling to dead black
+     color of the hero the whole way down instead of falling to dead black
      below the fold.
 
      Attached to html::before rather than to body as a background-image with
@@ -330,9 +344,9 @@
      read as bold paragraphs. That is not a scale, it is 23 independent
      decisions.
 
-     Every rung sets font, size, weight, tracking and colour together, so a
+     Every rung sets font, size, weight, tracking and color together, so a
      heading cannot be half-styled. Colour is --foreground by default; .accent-*
-     overrides it where a heading should take a palette colour.
+     overrides it where a heading should take a palette color.
 
      Sizes are unchanged from what the site already used at each level, so this
      unifies without reflowing any page. */
@@ -379,8 +393,8 @@
 
      A card sets --card-accent to a palette token and these rules do the rest.
      The alternative — a lookup table of Tailwind class strings, one row per
-     colour — means every new accent is three more hardcoded strings in a page
-     file, and the colour stops being a token the moment it is baked into a
+     color — means every new accent is three more hardcoded strings in a page
+     file, and the color stops being a token the moment it is baked into a
      class name. Here the token flows through: retune --accent-sand and every
      sand card follows, tile, title, rule and hover together.
 

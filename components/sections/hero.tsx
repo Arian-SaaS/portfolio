@@ -33,15 +33,15 @@ export function Hero({ photoUrl }: HeroProps) {
          * muted body copy, the hairline borders — paints from the same design
          * tokens as the rest of the site. Scoping the token layer to dark is
          * what keeps an outline Button legible on black while the visitor has
-         * the site in light mode, without a single bespoke colour override.
+         * the site in light mode, without a single bespoke color override.
          *
          * `text-foreground` has to be restated here and cannot be left to
          * inherit: `body` resolves `var(--foreground)` against the light
-         * palette and passes down the *computed* colour, so descendants would
+         * palette and passes down the *computed* color, so descendants would
          * inherit near-black text however the tokens are scoped. Setting it on
          * the element that carries `dark` re-resolves it against the dark
          * value, and everything below — ghost Buttons especially, which carry
-         * no colour of their own — inherits from that instead.
+         * no color of their own — inherits from that instead.
          */
         className={`dark text-foreground ${FILL} md:min-h-[680px]`}
         /*
