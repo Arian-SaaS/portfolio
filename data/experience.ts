@@ -46,13 +46,15 @@ export const experience: ExperienceEntry[] = [
     type: "experience",
     period: "2023",
     title: "Independent Software Engineer (Freelance)",
-    org: "Ergonomic Evaluation Desktop Application",
+    org: "Ergonomic Assessment Desktop Application",
     description:
-      "Cross-platform desktop application for Windows and macOS that runs dynamic ergonomic assessments, delivered end to end as an independent contractor.",
+      "A guided assessment application for an ergonomic assessment service company, built with Electron and React and delivered to both Windows and macOS. An assessor works through an evaluation, attaches photographic evidence, captures a signature for sign-off, and exports the finished client report without leaving the application.",
     bullets: [
-      "Shipped one codebase to both Windows and macOS, taking on the packaging, installer, and platform-difference work that a desktop target carries over a web one.",
-      "Built the assessment as a dynamic evaluation rather than a fixed questionnaire, so the analysis responds to inputs as they are entered instead of only at submission.",
-      "Owned the engagement end to end — requirements, build, and delivery — working directly with the client rather than through a team.",
+      "Built the evaluation as a guided flow over dynamic assessment fields, so the form follows the assessment being carried out rather than presenting one fixed questionnaire.",
+      "Handled photographic evidence inside the assessment record — capture, attachment, and placement into the generated report next to the findings it supports.",
+      "Implemented electronic signature capture, so an assessment can be signed off at the point the work is finished rather than in a separate paper step afterwards.",
+      "Built PDF and Word import and export, turning a completed assessment into the client-ready report the company delivers, and reading existing documents back in.",
+      "Shipped one Electron and React codebase to Windows and macOS, taking on the packaging, installer, and platform-difference work a desktop target carries over a web one.",
     ],
   },
   {

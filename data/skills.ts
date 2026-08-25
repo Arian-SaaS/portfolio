@@ -32,7 +32,7 @@ export const skillCategories: SkillCategory[] = [
     icon: "code",
     accent: "cyan",
     blurb: "The day-to-day, across both ends of the stack.",
-    skills: ["JavaScript (ES6+)", "TypeScript", "Python", "Java", "SQL"],
+    skills: ["JavaScript (ES6+)", "TypeScript", "Python", "Dart", "Java", "SQL"],
   },
   {
     category: "Frontend",
@@ -40,7 +40,7 @@ export const skillCategories: SkillCategory[] = [
     icon: "frontend",
     accent: "sand",
     blurb: "Interfaces built to survive a growing product, not a demo.",
-    skills: ["React", "Redux", "Vite", "Tailwind CSS", "Component Architecture"],
+    skills: ["React", "Redux", "Vite", "Electron", "Tailwind CSS", "Component Architecture"],
   },
   {
     category: "Backend",
@@ -93,6 +93,8 @@ export const skillCategories: SkillCategory[] = [
       "OpenAI API",
       "Claude API",
       "LLM Integration",
+      "Machine Learning Models",
+      "Statistical Analysis",
       "OCR Pipelines",
       "Prompt Engineering",
     ],
