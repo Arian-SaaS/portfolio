@@ -55,6 +55,9 @@ export const experience: ExperienceEntry[] = [
       "Implemented electronic signature capture, so an assessment can be signed off at the point the work is finished rather than in a separate paper step afterwards.",
       "Built PDF and Word import and export, turning a completed assessment into the client-ready report the company delivers, and reading existing documents back in.",
       "Shipped one Electron and React codebase to Windows and macOS, taking on the packaging, installer, and platform-difference work a desktop target carries over a web one.",
+      "Replaced the spreadsheet-driven process the business had been running on — assessment, evidence, sign-off, and reporting now live in one application instead of in files passed between people.",
+      "Removed the time and cost of maintaining several separate tools by covering the whole workflow in a single business application, connecting the assessors doing the work through to the executives reading the results.",
+      "Made in-home evaluation and on-the-spot decisions possible: an assessment is completed, signed, and turned into its report before the assessor leaves the site.",
     ],
   },
   {
