@@ -97,7 +97,7 @@ export function Hero({ photoUrl }: HeroProps) {
             )}
 
             <div className="hero-rise" style={{ animationDelay: "0.06s" }}>
-              <h1 className="font-heading text-4xl font-semibold tracking-tight text-foreground sm:text-6xl">
+              <h1 className="t-display">
                 {siteConfig.name}
               </h1>
             </div>

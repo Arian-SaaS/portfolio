@@ -43,6 +43,32 @@ export const experience: ExperienceEntry[] = [
     ],
   },
   {
+    type: "experience",
+    period: "2023",
+    title: "Independent Software Engineer (Freelance)",
+    org: "Ergonomic Evaluation Desktop Application",
+    description:
+      "Cross-platform desktop application for Windows and macOS that runs dynamic ergonomic assessments, delivered end to end as an independent contractor.",
+    bullets: [
+      "Shipped one codebase to both Windows and macOS, taking on the packaging, installer, and platform-difference work that a desktop target carries over a web one.",
+      "Built the assessment as a dynamic evaluation rather than a fixed questionnaire, so the analysis responds to inputs as they are entered instead of only at submission.",
+      "Owned the engagement end to end — requirements, build, and delivery — working directly with the client rather than through a team.",
+    ],
+  },
+  {
+    type: "experience",
+    period: "2024",
+    title: "Independent Software Engineer (Freelance)",
+    org: "LottoIQ — Statistical & ML Analysis Platform",
+    description:
+      "A scientific analysis application over historical draw data: ingestion and monitoring of the historical record, statistical and machine-learning pattern and trend recognition, and projection of the likely shape of future output.",
+    bullets: [
+      "Built the historical data pipeline — ingestion, cleaning, and storage of the record that every downstream model reads from.",
+      "Implemented statistical and machine-learning analysis over that history for frequency, pattern, and trend recognition.",
+      "Presented results as distributions and trends across the historical record, which is what the underlying statistics support.",
+    ],
+  },
+  {
     type: "milestone",
     period: "Mid 2024 – Present",
     title: "Lead Full-Stack Engineer & Architect",

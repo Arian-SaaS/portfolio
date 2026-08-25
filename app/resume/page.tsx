@@ -34,7 +34,7 @@ export default function ResumePage() {
       <SolidCard hover={false} className="mt-10 p-8 print:border-0 print:bg-transparent print:p-0 print:shadow-none">
         <div className="flex flex-col justify-between gap-4 sm:flex-row sm:items-end">
           <div>
-            <h1 className="font-heading text-3xl font-semibold tracking-tight">
+            <h1 className="t-h1">
               {siteConfig.name}
             </h1>
             <p className="mt-1 text-accent-cyan">{siteConfig.titles.join(" · ")}</p>
@@ -55,7 +55,7 @@ export default function ResumePage() {
         <p className="mt-6 leading-relaxed text-muted-foreground">{resumeSummary}</p>
 
         <div className="mt-10">
-          <h2 className="font-heading text-lg font-semibold">Experience</h2>
+          <h2 className="t-h3">Experience</h2>
           <div className="mt-4 space-y-6">
             {experience
               .filter((e) => e.type !== "education")
@@ -66,11 +66,11 @@ export default function ResumePage() {
                     <p className="text-xs text-muted-foreground">{entry.period}</p>
                   </div>
                   <p className="text-sm text-accent-cyan">{entry.org}</p>
-                  <p className="mt-1 text-sm leading-relaxed text-muted-foreground">
+                  <p className="mt-1 t-body">
                     {entry.description}
                   </p>
                   {entry.bullets && (
-                    <ul className="mt-2 list-disc space-y-1 pl-4 text-sm leading-relaxed text-muted-foreground marker:text-accent-cyan">
+                    <ul className="mt-2 list-disc space-y-1 pl-4 t-body marker:text-accent-cyan">
                       {entry.bullets.map((bullet) => (
                         <li key={bullet}>{bullet}</li>
                       ))}
@@ -82,7 +82,7 @@ export default function ResumePage() {
         </div>
 
         <div className="mt-10">
-          <h2 className="font-heading text-lg font-semibold">Education &amp; Certifications</h2>
+          <h2 className="t-h3">Education &amp; Certifications</h2>
           <div className="mt-4 space-y-4">
             {experience
               .filter((e) => e.type === "education")
@@ -105,7 +105,7 @@ export default function ResumePage() {
         </div>
 
         <div className="mt-10">
-          <h2 className="font-heading text-lg font-semibold">Skills</h2>
+          <h2 className="t-h3">Skills</h2>
           <div className="mt-4 space-y-3">
             {skillCategories.map((cat) => (
               <div key={cat.category} className="flex flex-col gap-1 sm:flex-row sm:gap-3">
@@ -117,7 +117,7 @@ export default function ResumePage() {
         </div>
 
         <div className="mt-10">
-          <h2 className="font-heading text-lg font-semibold">Selected Projects</h2>
+          <h2 className="t-h3">Selected Projects</h2>
           <ul className="mt-4 space-y-2">
             {projects.map((p) => (
               <li key={p.slug} className="text-sm">

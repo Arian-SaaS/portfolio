@@ -75,7 +75,7 @@ export default async function ProjectPage({
             >
               {project.category}
             </Badge>
-            <h1 className="mt-4 font-heading text-4xl font-semibold tracking-tight sm:text-5xl">
+            <h1 className="mt-4 t-display">
               {project.name}
             </h1>
             <p className="mt-2 text-lg text-muted-foreground">{project.title}</p>
@@ -209,7 +209,7 @@ export default async function ProjectPage({
           <GlassCard strong className="flex flex-col items-start justify-between gap-4 p-8 sm:flex-row sm:items-center">
             <div>
               <p className="text-xs uppercase tracking-wide text-muted-foreground">Next project</p>
-              <p className="mt-1 font-heading text-xl font-semibold">{nextProject.name}</p>
+              <p className="mt-1 t-h3 text-xl">{nextProject.name}</p>
             </div>
             <Button asChild variant="outline">
               <Link href={`/projects/${nextProject.slug}`}>

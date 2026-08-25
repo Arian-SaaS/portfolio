@@ -92,11 +92,11 @@ export default function ProcessPage() {
         {steps.map((step, i) => (
           <StaggerItem key={step.title}>
             <SolidCard className="h-full p-6">
-              <span className="font-heading text-sm font-semibold text-accent-cyan">
+              <span className="t-h4 text-accent-cyan">
                 {String(i + 1).padStart(2, "0")}
               </span>
-              <h3 className="mt-2 font-heading font-semibold">{step.title}</h3>
-              <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
+              <h3 className="mt-2 t-h3">{step.title}</h3>
+              <p className="mt-2 t-body">
                 {step.description}
               </p>
             </SolidCard>

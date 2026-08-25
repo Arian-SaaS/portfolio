@@ -38,14 +38,26 @@ export default function ExperiencePage() {
                   <Icon className="size-4 text-accent-cyan" />
                 </div>
                 <SolidCard className="p-6">
-                  <p className="text-xs uppercase tracking-wide text-muted-foreground">
-                    {entry.period}
-                  </p>
-                  <h3 className="mt-1 font-heading text-lg font-semibold">{entry.title}</h3>
+                  <p className="t-meta uppercase tracking-wide">{entry.period}</p>
+                  <h3 className="mt-1 t-h3">{entry.title}</h3>
                   <p className="text-sm text-accent-cyan">{entry.org}</p>
-                  <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
-                    {entry.description}
-                  </p>
+                  <p className="mt-2 t-body">{entry.description}</p>
+                  {/* The data has carried bullets since the file was written and
+                      the page never rendered them, so every entry showed a
+                      one-line summary and hid the actual work underneath it. */}
+                  {entry.bullets && entry.bullets.length > 0 && (
+                    <ul className="mt-4 space-y-2">
+                      {entry.bullets.map((bullet) => (
+                        <li key={bullet} className="flex gap-2.5 t-body">
+                          <span
+                            className="mt-2 size-1 shrink-0 rounded-full bg-accent-cyan"
+                            aria-hidden
+                          />
+                          <span>{bullet}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  )}
                 </SolidCard>
               </div>
             </FadeIn>

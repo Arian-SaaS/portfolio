@@ -12,7 +12,7 @@ export function KpiTile({ label, value, delta, goodDirection, sparkline }: KpiTi
     <SolidCard hover={false} className="overflow-hidden p-5">
       <p className="text-xs text-muted-foreground">{label}</p>
       <div className="mt-2 flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between">
-        <p className="font-heading text-2xl font-semibold">{value}</p>
+        <p className="t-stat">{value}</p>
         <div className={cn("text-muted-foreground", isGood ? "text-status-good" : "text-status-critical")}>
           <Sparkline data={sparkline} />
         </div>

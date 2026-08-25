@@ -273,6 +273,60 @@
 
      Below the fold FadeIn is still the right tool: those elements are not LCP
      candidates and genuinely should wait until they are scrolled to. */
+  /* ---- type scale --------------------------------------------------------
+
+     One ladder, five rungs, used everywhere. Before this the site had headings
+     at text-lg, text-xl/2xl, text-2xl, text-3xl/4xl, text-4xl/5xl and
+     text-4xl/6xl, tracking-tight on some and not others, and three headings
+     carrying no size at all — which meant they silently inherited body size and
+     read as bold paragraphs. That is not a scale, it is 23 independent
+     decisions.
+
+     Every rung sets font, size, weight, tracking and colour together, so a
+     heading cannot be half-styled. Colour is --foreground by default; .accent-*
+     overrides it where a heading should take a palette colour.
+
+     Sizes are unchanged from what the site already used at each level, so this
+     unifies without reflowing any page. */
+  .t-display {
+    @apply font-heading text-4xl font-semibold tracking-tight text-foreground sm:text-6xl;
+  }
+  .t-h1 {
+    @apply font-heading text-3xl font-semibold tracking-tight text-foreground sm:text-4xl;
+  }
+  .t-h2 {
+    @apply font-heading text-2xl font-semibold tracking-tight text-foreground;
+  }
+  .t-h3 {
+    @apply font-heading text-lg font-semibold tracking-tight text-foreground;
+  }
+  /* Display numerals — KPI values, counters. tabular-nums is the point of the
+     rung: these numbers change while the reader is looking at them, and
+     proportional digits change width as they do, so the figure twitches and
+     shoves whatever sits beside it. */
+  .t-stat {
+    @apply font-heading text-2xl font-semibold tabular-nums text-foreground;
+  }
+  .t-h4 {
+    @apply font-heading text-sm font-semibold tracking-tight text-foreground;
+  }
+
+  /* Body ladder. Same idea: lead under a heading, body inside a card, meta for
+     timestamps and counts. Line height rides with the size rather than being
+     picked per use. */
+  .t-lead {
+    @apply text-lg leading-relaxed text-muted-foreground;
+  }
+  .t-body {
+    @apply text-sm leading-relaxed text-muted-foreground;
+  }
+  .t-eyebrow {
+    @apply font-mono text-sm font-medium tracking-wide text-accent-cyan;
+  }
+  .t-meta {
+    @apply font-mono text-xs text-muted-foreground;
+  }
+
   /* Per-card accent, driven by one custom property.
 
      A card sets --card-accent to a palette token and these rules do the rest.

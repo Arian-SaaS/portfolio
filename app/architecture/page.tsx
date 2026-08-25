@@ -54,7 +54,7 @@ export default function ArchitecturePage() {
                 <span className="flex size-9 shrink-0 items-center justify-center rounded-lg bg-accent-blue/10 text-accent-blue transition-colors duration-300 group-hover:bg-accent-blue group-hover:text-white">
                   <Icon className="size-4.5" />
                 </span>
-                <h3 className="font-heading font-semibold transition-colors duration-300 group-hover:text-accent-cyan">
+                <h3 className="t-h3 transition-colors duration-300 group-hover:text-accent-cyan">
                   {diagram.title}
                 </h3>
               </div>

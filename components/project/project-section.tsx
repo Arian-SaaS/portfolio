@@ -13,7 +13,7 @@ export function ProjectSection({
 }) {
   return (
     <FadeIn className={cn("border-t border-glass-border py-10 first:border-0 first:pt-0", className)}>
-      <h2 className="font-heading text-xl font-semibold tracking-tight sm:text-2xl">
+      <h2 className="t-h2">
         {title}
       </h2>
       <div className="mt-4">{children}</div>

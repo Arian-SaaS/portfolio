@@ -81,7 +81,7 @@ export default function SkillsPage() {
                   <span className="accent-tile flex size-9 shrink-0 items-center justify-center rounded-lg">
                     <Icon className="size-4.5" />
                   </span>
-                  <h3 className="accent-title font-heading text-lg font-semibold">
+                  <h3 className="accent-title t-h3">
                     {cat.category}
                   </h3>
                   <span className="ml-auto font-mono text-xs text-muted-foreground/70">
@@ -89,7 +89,7 @@ export default function SkillsPage() {
                   </span>
                 </div>
 
-                <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{cat.blurb}</p>
+                <p className="mt-3 t-body">{cat.blurb}</p>
 
                 {/* A hairline in the category accent, so the eye can group the
                     grid by colour without the pills themselves being coloured —

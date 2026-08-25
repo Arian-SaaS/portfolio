@@ -48,7 +48,7 @@ export function ArchitectureShowcase() {
 
       {/* Reserved height. The descriptions differ by a line or two and the
           diagram below would otherwise jump on every tab switch. */}
-      <p className="mt-5 min-h-[3.5rem] max-w-2xl text-sm leading-relaxed text-muted-foreground sm:min-h-[3rem]">
+      <p className="mt-5 min-h-[3.5rem] max-w-2xl t-body sm:min-h-[3rem]">
         {current.description}
       </p>
 

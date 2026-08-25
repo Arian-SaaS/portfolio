@@ -32,7 +32,7 @@ export default function TestimonialsPage() {
                 </Badge>
               )}
               <Quote className="size-5 text-accent-cyan/60" />
-              <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
+              <p className="mt-3 t-body">
                 {t.quote}
               </p>
               <div className="mt-4">

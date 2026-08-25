@@ -63,7 +63,7 @@ export default function AboutPage() {
       </FadeIn>
 
       <FadeIn delay={0.1}>
-        <h2 className="mt-16 font-heading text-2xl font-semibold tracking-tight">
+        <h2 className="mt-16 t-h2">
           How I think as an engineer
         </h2>
         <p className="mt-4 text-muted-foreground leading-relaxed">
@@ -78,7 +78,7 @@ export default function AboutPage() {
       </FadeIn>
 
       <FadeIn delay={0.15}>
-        <h2 className="mt-12 font-heading text-2xl font-semibold tracking-tight">
+        <h2 className="mt-12 t-h2">
           What problems I enjoy solving
         </h2>
         <p className="mt-4 text-muted-foreground leading-relaxed">
@@ -93,7 +93,7 @@ export default function AboutPage() {
 
       <div className="mt-16">
         <FadeIn>
-          <h2 className="font-heading text-2xl font-semibold tracking-tight">
+          <h2 className="t-h2">
             Engineering philosophy &amp; core values
           </h2>
         </FadeIn>
@@ -101,8 +101,8 @@ export default function AboutPage() {
           {values.map((value) => (
             <StaggerItem key={value.title}>
               <SolidCard className="h-full p-6">
-                <h3 className="font-heading font-semibold">{value.title}</h3>
-                <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
+                <h3 className="t-h3">{value.title}</h3>
+                <p className="mt-2 t-body">
                   {value.description}
                 </p>
               </SolidCard>

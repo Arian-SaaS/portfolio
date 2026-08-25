@@ -35,7 +35,7 @@ export default function Home() {
           {stats.map((stat) => (
             <StaggerItem key={stat.label}>
               <SolidCard className="p-6 text-center" hover={false}>
-                <p className="font-heading text-3xl font-semibold text-accent-cyan">
+                <p className="t-stat text-3xl text-accent-cyan">
                   <AnimatedCounter value={stat.value} suffix={stat.suffix} />
                 </p>
                 <p className="mt-2 text-xs text-muted-foreground">{stat.label}</p>
@@ -125,7 +125,7 @@ export default function Home() {
           {skillCategories.slice(0, 4).map((cat) => (
             <BentoCard key={cat.category} span={cat.size === "lg" ? "md" : "sm"}>
               <SolidCard className="h-full p-6">
-                <h3 className="font-heading font-semibold">{cat.category}</h3>
+                <h3 className="t-h3">{cat.category}</h3>
                 <div className="mt-3 flex flex-wrap gap-2">
                   {cat.skills.slice(0, 5).map((s) => (
                     <span
@@ -157,7 +157,7 @@ export default function Home() {
       <section className="mx-auto max-w-6xl px-4 pb-32 sm:px-6 lg:px-8">
         <FadeIn>
           <GlassCard strong className="flex flex-col items-center gap-6 p-12 text-center">
-            <h2 className="font-heading text-3xl font-semibold tracking-tight sm:text-4xl">
+            <h2 className="t-h1">
               Let&apos;s talk about your next platform
             </h2>
             <p className="max-w-xl text-muted-foreground">

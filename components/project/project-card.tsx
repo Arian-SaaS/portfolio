@@ -36,10 +36,7 @@ export function ProjectCard({
             <ArrowUpRight className="size-4 text-muted-foreground transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
           </div>
           <h3
-            className={cn(
-              "mt-4 font-heading font-semibold tracking-tight",
-              featured ? "text-2xl" : "text-lg"
-            )}
+            className={cn("mt-4", featured ? "t-h2" : "t-h3")}
           >
             {project.name}
           </h3>
@@ -47,7 +44,7 @@ export function ProjectCard({
         </div>
         <p
           className={cn(
-            "mt-4 text-sm leading-relaxed text-muted-foreground",
+            "mt-4 t-body",
             !featured && "line-clamp-3"
           )}
         >

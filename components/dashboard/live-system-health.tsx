@@ -162,7 +162,7 @@ export function LiveSystemHealth() {
                   seconds visibly twitches and drags the sparkline beside it
                   back and forth.
                 */}
-                <p className="font-heading text-2xl font-semibold tabular-nums">{format(s)}</p>
+                <p className="t-stat">{format(s)}</p>
                 <div className={cn(isGood ? "text-status-good" : "text-status-critical")}>
                   <Sparkline data={s.points} />
                 </div>

@@ -38,7 +38,7 @@ export default function ContactPage() {
 
         <FadeIn delay={0.1} className="lg:col-span-2">
           <GlassCard hover={false} className="h-full p-8">
-            <h3 className="font-heading font-semibold">Direct contact</h3>
+            <h3 className="t-h3">Direct contact</h3>
             <ul className="mt-4 space-y-3">
               {links.map((link) => (
                 <li key={link.label}>

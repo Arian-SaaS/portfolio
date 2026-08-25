@@ -72,11 +72,11 @@ export default function PrinciplesPage() {
         {principles.map((principle, i) => (
           <StaggerItem key={principle.title}>
             <SolidCard className="h-full p-6">
-              <span className="font-heading text-sm font-semibold text-accent-cyan">
+              <span className="t-h4 text-accent-cyan">
                 {String(i + 1).padStart(2, "0")}
               </span>
-              <h3 className="mt-2 font-heading font-semibold">{principle.title}</h3>
-              <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
+              <h3 className="mt-2 t-h3">{principle.title}</h3>
+              <p className="mt-2 t-body">
                 {principle.description}
               </p>
             </SolidCard>

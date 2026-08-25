@@ -16,7 +16,7 @@ export function DashboardPreview({
       <div className="flex flex-wrap items-center justify-between gap-2">
         <div>
           <p className="text-xs uppercase tracking-wide text-accent-cyan">{data.eyebrow}</p>
-          <h4 className="mt-1 font-heading text-lg font-semibold">{data.title}</h4>
+          <h4 className="mt-1 t-h3">{data.title}</h4>
         </div>
         <p className="text-xs text-muted-foreground">Synthetic data · not production numbers</p>
       </div>

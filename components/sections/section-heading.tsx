@@ -33,14 +33,14 @@ export function SectionHeading({
   return (
     <div className={cn(align === "center" && "text-center", className)}>
       {eyebrow && (
-        <p className="font-mono text-sm font-medium tracking-wide text-accent-cyan">
+        <p className="t-eyebrow">
           <span className="text-muted-foreground/60">{"// "}</span>
           {eyebrow}
         </p>
       )}
       <h2
         className={cn(
-          "mt-2 font-heading text-3xl font-semibold tracking-tight sm:text-4xl",
+          "mt-2 t-h1",
           titleTone === "accent" && "text-accent-cyan"
         )}
       >
@@ -49,7 +49,7 @@ export function SectionHeading({
       {description && (
         <p
           className={cn(
-            "mt-4 max-w-2xl text-muted-foreground",
+            "mt-4 max-w-2xl t-lead",
             align === "center" && "mx-auto"
           )}
         >

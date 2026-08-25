@@ -9,7 +9,7 @@ export function Footer() {
       <div className="mx-auto max-w-6xl px-4 py-12 sm:px-6 lg:px-8">
         <div className="grid gap-8 sm:grid-cols-3">
           <div>
-            <p className="font-heading text-sm font-semibold">{siteConfig.name}</p>
+            <p className="t-h4">{siteConfig.name}</p>
             <p className="mt-2 max-w-xs text-sm text-muted-foreground">
               {siteConfig.titles.join(" · ")}
             </p>
