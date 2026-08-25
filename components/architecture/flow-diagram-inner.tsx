@@ -12,7 +12,7 @@ import {
 } from "@xyflow/react";
 import "@xyflow/react/dist/style.css";
 import { useTheme } from "next-themes";
-import { DiagramNode } from "@/components/architecture/diagram-node";
+import { DiagramNode, NODE_WIDTH } from "@/components/architecture/diagram-node";
 
 const nodeTypes = { diagram: DiagramNode };
 
@@ -32,15 +32,18 @@ export function FlowDiagramInner({
   const { resolvedTheme } = useTheme();
   const normalized = React.useMemo(() => items.map(normalize), [items]);
 
-  const nodeWidth = compact ? 150 : 190;
-  const gapX = compact ? 60 : 90;
+  // The node is a fixed NODE_WIDTH regardless of `compact`, so only the gap
+  // between boxes changes. Spacing used to be computed from 150 or 190, neither
+  // of which was the node's actual 176 — the gaps were real but never the size
+  // the code claimed.
+  const gapX = compact ? 44 : 88;
 
   const nodes: Node[] = React.useMemo(
     () =>
       normalized.map((n, i) => ({
         id: String(i),
         type: "diagram",
-        position: { x: i * (nodeWidth + gapX), y: 0 },
+        position: { x: i * (NODE_WIDTH + gapX), y: 0 },
         data: {
           label: n.label,
           detail: n.detail,
@@ -49,7 +52,7 @@ export function FlowDiagramInner({
         },
         draggable: true,
       })),
-    [normalized, nodeWidth, gapX]
+    [normalized, gapX]
   );
 
   const edges: Edge[] = React.useMemo(
