@@ -14,15 +14,19 @@ export function SectionHeading({
   className?: string;
   align?: "left" | "center";
   /**
-   * "default" paints the title in --foreground. "accent" runs it through the
-   * palette instead, turquoise into sand — the same ramp as the hero disc, so
-   * an accented heading reads as part of the site rather than a coloured
-   * exception.
+   * "default" paints the title in --foreground, "accent" in the turquoise.
    *
-   * Both ends of the gradient clear WCAG AA against the page in both themes
-   * (turquoise 10.2:1 and sand 11.0:1 on the dark ground, 5.5:1 and 4.8:1 on
-   * white), which is the thing gradient text usually gets wrong: it is easy to
-   * pick two colours that look good and land one of them at 3:1.
+   * This was briefly a turquoise-into-sand gradient and that was a mistake
+   * worth recording. Both endpoints cleared AA comfortably, so a contrast check
+   * passed it — but contrast was never the problem. Turquoise and sand sit on
+   * opposite sides of the wheel, and interpolating between them, in oklab or
+   * anything else, runs straight through neutral: chroma fell from 0.133 to
+   * 0.040 by the far end, painting most of the heading in #b4c9ad and #c0c7aa.
+   * Those are pale near-greys. On a dark ground they read as white, which is
+   * precisely what the heading was changed to stop being.
+   *
+   * A two-hue gradient is only safe between neighbours on the wheel. Across
+   * complements, use one colour.
    */
   titleTone?: "default" | "accent";
 }) {
@@ -37,11 +41,7 @@ export function SectionHeading({
       <h2
         className={cn(
           "mt-2 font-heading text-3xl font-semibold tracking-tight sm:text-4xl",
-          titleTone === "accent" &&
-            // pb-1 is load-bearing: bg-clip-text crops to the glyph box, and
-            // without a little room underneath the descenders on g, y and p
-            // are sliced off flat.
-            "bg-gradient-to-r from-accent-cyan via-accent-cyan to-accent-sand bg-clip-text pb-1 text-transparent"
+          titleTone === "accent" && "text-accent-cyan"
         )}
       >
         {title}

@@ -273,6 +273,34 @@
 
      Below the fold FadeIn is still the right tool: those elements are not LCP
      candidates and genuinely should wait until they are scrolled to. */
+  /* Per-card accent, driven by one custom property.
+
+     A card sets --card-accent to a palette token and these rules do the rest.
+     The alternative — a lookup table of Tailwind class strings, one row per
+     colour — means every new accent is three more hardcoded strings in a page
+     file, and the colour stops being a token the moment it is baked into a
+     class name. Here the token flows through: retune --accent-sand and every
+     sand card follows, tile, title, rule and hover together.
+
+     color-mix rather than a /10 opacity utility because these sit on --surface,
+     not on the page ground: a translucent tint would pick up whatever is behind
+     the card, and cards are not all on the same background. */
+  .accent-tile {
+    background-color: color-mix(in srgb, var(--card-accent) 12%, transparent);
+    color: var(--card-accent);
+    transition: background-color 300ms, color 300ms;
+  }
+  .group:hover .accent-tile {
+    background-color: var(--card-accent);
+    color: var(--primary-foreground);
+  }
+  .accent-title {
+    color: var(--card-accent);
+  }
+  .accent-rule {
+    background-color: color-mix(in srgb, var(--card-accent) 45%, transparent);
+  }
+
   .hero-rise {
     animation: hero-rise 0.55s cubic-bezier(0.22, 1, 0.36, 1) both;
   }

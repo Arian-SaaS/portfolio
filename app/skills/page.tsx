@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import type * as React from "react";
 import {
   Bot,
   Cloud,
@@ -34,27 +35,14 @@ const iconMap: Record<SkillIcon, LucideIcon> = {
 };
 
 /**
- * Written out in full rather than composed as `text-accent-${accent}`. Tailwind
- * finds classes by scanning source text, so an interpolated name is a class it
- * never sees and never generates — the styles simply go missing in the
- * production build while working fine in dev.
+ * Semantic accent name to palette token. One indirection, and it stops here —
+ * the card sets --card-accent from this and the .accent-* rules in globals.css
+ * do the rest. Nothing downstream needs to know which colour it got.
  */
-const accentMap: Record<SkillAccent, { tile: string; title: string; rule: string }> = {
-  cyan: {
-    tile: "bg-accent-cyan/10 text-accent-cyan group-hover:bg-accent-cyan group-hover:text-primary-foreground",
-    title: "group-hover:text-accent-cyan",
-    rule: "bg-accent-cyan/40",
-  },
-  blue: {
-    tile: "bg-accent-blue/10 text-accent-blue group-hover:bg-accent-blue group-hover:text-primary-foreground",
-    title: "group-hover:text-accent-blue",
-    rule: "bg-accent-blue/40",
-  },
-  sand: {
-    tile: "bg-accent-sand/10 text-accent-sand group-hover:bg-accent-sand group-hover:text-primary-foreground",
-    title: "group-hover:text-accent-sand",
-    rule: "bg-accent-sand/40",
-  },
+const accentToken: Record<SkillAccent, string> = {
+  cyan: "var(--accent-cyan)",
+  blue: "var(--accent-blue)",
+  sand: "var(--accent-sand)",
 };
 
 const spanForSize = { sm: "sm", md: "md", lg: "lg" } as const;
@@ -82,19 +70,18 @@ export default function SkillsPage() {
       <BentoGrid className="mt-12">
         {skillCategories.map((cat) => {
           const Icon = iconMap[cat.icon];
-          const accent = accentMap[cat.accent];
+          const accent = accentToken[cat.accent];
           return (
             <BentoCard key={cat.category} span={spanForSize[cat.size]}>
-              <SolidCard className="group flex h-full flex-col p-6">
+              <SolidCard
+                className="group flex h-full flex-col p-6"
+                style={{ "--card-accent": accent } as React.CSSProperties}
+              >
                 <div className="flex items-center gap-3">
-                  <span
-                    className={`flex size-9 shrink-0 items-center justify-center rounded-lg transition-colors duration-300 ${accent.tile}`}
-                  >
+                  <span className="accent-tile flex size-9 shrink-0 items-center justify-center rounded-lg">
                     <Icon className="size-4.5" />
                   </span>
-                  <h3
-                    className={`font-heading text-lg font-semibold transition-colors duration-300 ${accent.title}`}
-                  >
+                  <h3 className="accent-title font-heading text-lg font-semibold">
                     {cat.category}
                   </h3>
                   <span className="ml-auto font-mono text-xs text-muted-foreground/70">
@@ -107,7 +94,7 @@ export default function SkillsPage() {
                 {/* A hairline in the category accent, so the eye can group the
                     grid by colour without the pills themselves being coloured —
                     45 tinted pills would be noise, one rule per card is not. */}
-                <span className={`mt-4 h-px w-10 rounded-full ${accent.rule}`} aria-hidden />
+                <span className="accent-rule mt-4 h-px w-10 rounded-full" aria-hidden />
 
                 <div className="mt-4 flex flex-wrap gap-2">
                   {cat.skills.map((skill) => (
