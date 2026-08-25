@@ -57,15 +57,16 @@ export const experience: ExperienceEntry[] = [
   },
   {
     type: "experience",
-    period: "2024",
+    period: "2024 – 2026",
     title: "Independent Software Engineer (Freelance)",
-    org: "LottoIQ — Statistical & ML Analysis Platform",
+    org: "LottoIQ — Statistical & ML Forecasting Platform",
     description:
-      "A scientific analysis application over historical draw data: ingestion and monitoring of the historical record, statistical and machine-learning pattern and trend recognition, and projection of the likely shape of future output.",
+      "A cross-platform analysis application over historical lottery draw data, built for web and the Google Play Store. Several independent statistical algorithms run across the historical record, and their combined output feeds a machine-learning model that produces a forecast set for the next draw.",
     bullets: [
-      "Built the historical data pipeline — ingestion, cleaning, and storage of the record that every downstream model reads from.",
-      "Implemented statistical and machine-learning analysis over that history for frequency, pattern, and trend recognition.",
-      "Presented results as distributions and trends across the historical record, which is what the underlying statistics support.",
+      "Built the analysis pipeline in Python — ingestion and cleaning of the historical draw record, then a set of statistical algorithms whose results are combined into the feature set the model reads.",
+      "Shipped a single Dart codebase to both web and Android, so the same interface and analysis views run in a browser and in the Play Store build.",
+      "Backed the historical record in PostgreSQL and containerised the services with Docker for reproducible builds between development and deployment.",
+      "Launching publicly in 2026, web first with Android following. Algorithm and model detail is withheld until then.",
     ],
   },
   {
