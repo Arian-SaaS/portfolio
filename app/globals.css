@@ -86,6 +86,8 @@
   --glass-bg-strong: rgba(255, 255, 255, 0.75);
   --glass-border: rgba(11, 31, 58, 0.08);
   --hero-vignette: transparent;
+  --page-glow-1: transparent;
+  --page-glow-2: transparent;
   --surface: #ffffff;
   --status-good: #16a34a;
   --status-warning: #d97706;
@@ -127,52 +129,74 @@
 }
 
 .dark {
-  --navy: #0b1f3a;
-  --navy-deep: #060f1f;
-  --accent-blue: #3b82f6;
-  --accent-cyan: #22d3ee;
-  --glass-bg: rgba(255, 255, 255, 0.05);
-  --glass-bg-strong: rgba(255, 255, 255, 0.09);
-  --glass-border: rgba(255, 255, 255, 0.1);
-  --hero-vignette: var(--navy-deep);
-  --surface: #0e2038;
+  /* The dark theme is the hero, continued. Every neutral below is a near-black
+     carrying a trace of the same turquoise as the accent, rather than the navy
+     ramp this used to run on — so the page reads as one surface from the black
+     hole at the top all the way down, with no seam where the hero ends.
+
+     The two anchors are deliberately aliases, not copies: --background IS the
+     ground the render is drawn on, and --hero-vignette IS that same black. Copy
+     the hex into either and the day someone retunes the hero the page stops
+     matching it, silently, and only on the join. */
+  --navy: #071016;
+  --navy-deep: var(--bh-void);
+  /* Kept a step bluer than --accent-cyan on purpose. These two are the pair the
+     charts and diagrams separate series with, and two turquoises a hair apart
+     are two lines nobody can tell apart. */
+  --accent-blue: #38bdf8;
+  --accent-cyan: var(--bh-mid);
+  --glass-bg: rgba(255, 255, 255, 0.045);
+  --glass-bg-strong: rgba(255, 255, 255, 0.08);
+  /* A turquoise hairline rather than a white one. At 12% it does not read as
+     coloured, only as belonging. */
+  --glass-border: rgba(125, 226, 240, 0.14);
+  --hero-vignette: var(--bh-void);
+  --surface: #0b1218;
   --status-good: #22c55e;
   --status-warning: #f59e0b;
   --status-serious: #fb923c;
   --status-critical: #ef4444;
 
-  --background: #060f1f;
-  --foreground: #f8fafc;
-  --card: rgba(255, 255, 255, 0.04);
-  --card-foreground: #f8fafc;
-  --popover: #0f2947;
-  --popover-foreground: #f8fafc;
-  --primary: #22d3ee;
-  --primary-foreground: #04121f;
-  --secondary: #13294b;
-  --secondary-foreground: #f8fafc;
-  --muted: #13294b;
-  --muted-foreground: #93a5c4;
-  --accent: #1e3a63;
-  --accent-foreground: #f8fafc;
+  /* Ambient wash laid over the flat ground by html::before. Transparent in
+     light, where a coloured page would fight the content. */
+  --page-glow-1: rgba(34, 211, 238, 0.07);
+  --page-glow-2: rgba(56, 189, 248, 0.05);
+
+  --background: var(--bh-void);
+  --foreground: #e9f6f8;
+  --card: rgba(255, 255, 255, 0.035);
+  --card-foreground: #e9f6f8;
+  --popover: #0a1219;
+  --popover-foreground: #e9f6f8;
+  --primary: var(--bh-mid);
+  --primary-foreground: #032027;
+  --secondary: #0f1b21;
+  --secondary-foreground: #e9f6f8;
+  --muted: #0f1b21;
+  /* Tinted toward teal so muted copy sits in the same family as everything
+     else instead of reading as a cold grey dropped on top of it. */
+  --muted-foreground: #93aab2;
+  --accent: #123037;
+  --accent-foreground: #eafcff;
   --destructive: oklch(0.704 0.191 22.216);
-  --border: rgba(255, 255, 255, 0.1);
-  --input: rgba(255, 255, 255, 0.15);
-  --ring: #22d3ee;
+  --border: rgba(255, 255, 255, 0.09);
+  --input: rgba(255, 255, 255, 0.13);
+  --ring: var(--bh-mid);
   --chart-1: oklch(0.87 0 0);
   --chart-2: oklch(0.556 0 0);
   --chart-3: oklch(0.439 0 0);
   --chart-4: oklch(0.371 0 0);
   --chart-5: oklch(0.269 0 0);
-  --sidebar: #0b1f3a;
-  --sidebar-foreground: #f8fafc;
-  --sidebar-primary: #22d3ee;
-  --sidebar-primary-foreground: #04121f;
-  --sidebar-accent: #13294b;
-  --sidebar-accent-foreground: #f8fafc;
-  --sidebar-border: rgba(255, 255, 255, 0.1);
-  --sidebar-ring: #22d3ee;
+  --sidebar: #071016;
+  --sidebar-foreground: #e9f6f8;
+  --sidebar-primary: var(--bh-mid);
+  --sidebar-primary-foreground: #032027;
+  --sidebar-accent: #0f1b21;
+  --sidebar-accent-foreground: #e9f6f8;
+  --sidebar-border: rgba(255, 255, 255, 0.09);
+  --sidebar-ring: var(--bh-mid);
 }
+
 
 @layer base {
   * {
@@ -183,6 +207,31 @@
   }
   html {
     @apply font-sans;
+  }
+
+  /* An ambient turquoise wash over the flat ground, so the page carries the
+     colour of the hero the whole way down instead of falling to dead black
+     below the fold.
+
+     Attached to html::before rather than to body as a background-image with
+     background-attachment: fixed. Fixed backgrounds are re-rasterised on every
+     scroll frame and are a well-known scroll-jank source on mobile Safari — the
+     same reason .glass-panel-nav runs a smaller blur than its siblings. A fixed
+     element is composited once and merely re-composited on scroll.
+
+     z-index -1 is what keeps it a background: it puts the box on the negative
+     stacking level, above the canvas that the background of body propagates to
+     and below every in-flow element. Without it a fixed pseudo-element paints
+     as a positioned box, which is to say straight over the text. */
+  html::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+    background:
+      radial-gradient(60rem 42rem at 12% -8%, var(--page-glow-1), transparent 68%),
+      radial-gradient(52rem 38rem at 94% 26%, var(--page-glow-2), transparent 68%);
   }
 }
 
@@ -284,6 +333,10 @@
    drops extra conditional overrides of theme-tracked variables on those
    selectors specifically. */
 @media print {
+  html::before {
+    display: none;
+  }
+
   .print-force-light {
     --background: #ffffff;
     --foreground: #0b1220;
