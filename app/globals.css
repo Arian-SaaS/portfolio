@@ -102,6 +102,12 @@
      faint it may as well have been the transparent it replaced. A white page
      needs more of it than a dark one, not less: colored light on a dark ground
      glows, and the same light on white only tints. */
+  /* Constellation mesh weight. Light needs less than dark: a dark line on a
+     pale ground has far more contrast than a pale line on a dark one, so equal
+     alphas do not read as equal. */
+  --grid-line-opacity: 0.07;
+  --grid-dot-opacity: 0.16;
+
   --page-glow-1: rgba(13, 148, 136, 0.13);
   --page-glow-2: rgba(200, 150, 80, 0.10);
 
@@ -194,6 +200,9 @@
   /* The ambient wash: turquoise from the top left, a much fainter sand from the
      right. The sand one is deliberately weaker — warm light spreads visually
      wider than cold, so matched opacities do not read as matched. */
+  --grid-line-opacity: 0.15;
+  --grid-dot-opacity: 0.26;
+
   --page-glow-1: rgba(45, 212, 191, 0.06);
   --page-glow-2: rgba(214, 195, 165, 0.035);
 
