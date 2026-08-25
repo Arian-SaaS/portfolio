@@ -15,6 +15,8 @@
   --color-accent-blue: var(--accent-blue);
   --color-accent-cyan: var(--accent-cyan);
   --color-accent-sand: var(--accent-sand);
+  --color-eyebrow: var(--eyebrow);
+  --color-heading-accent: var(--heading-accent);
   --color-bh-void: var(--bh-void);
   --color-bh-cool: var(--bh-cool);
   --color-bh-mid: var(--bh-mid);
@@ -93,6 +95,12 @@
   /* Darkened from #8a6d43, which cleared AA on the tinted ground by 0.01 —
      technically a pass and no margin at all for a font weight change. */
   --accent-sand: #7d6139;
+  /* Headings do not take the accent in light mode. The ground is a teal-tinted
+     off-white and --accent-cyan is teal, so an accented heading sits one hue on
+     top of itself — legible by the contrast numbers and muddy to actually read.
+     Dark has no such problem: turquoise on slate is a different hue entirely. */
+  --eyebrow: #0b1220;
+  --heading-accent: #0b1220;
   --glass-bg: rgba(255, 255, 255, 0.65);
   --glass-bg-strong: rgba(255, 255, 255, 0.82);
   --glass-border: rgba(15, 118, 110, 0.12);
@@ -146,7 +154,7 @@
   --secondary: #e6f0ef;
   --secondary-foreground: #0f766e;
   --muted: #e6f0ef;
-  --muted-foreground: #4a5b64;
+  --muted-foreground: #38464f;
   --accent: #ccfbf1;
   --accent-foreground: #0f766e;
   --destructive: oklch(0.577 0.245 27.325);
@@ -193,6 +201,8 @@
   --accent-blue: #58a6ff;
   --accent-cyan: #2dd4bf;
   --accent-sand: #d6c3a5;
+  --eyebrow: var(--accent-cyan);
+  --heading-accent: var(--accent-cyan);
   --glass-bg: rgba(255, 255, 255, 0.04);
   --glass-bg-strong: rgba(255, 255, 255, 0.07);
   --glass-border: rgba(160, 220, 214, 0.14);
@@ -392,7 +402,7 @@
     @apply text-sm leading-relaxed text-muted-foreground;
   }
   .t-eyebrow {
-    @apply font-mono text-sm font-medium tracking-wide text-accent-cyan;
+    @apply font-mono text-sm font-medium tracking-wide text-eyebrow;
   }
   .t-meta {
     @apply font-mono text-xs text-muted-foreground;
@@ -503,15 +513,27 @@
   }
 
   .print-force-light {
+    /* Mirrors the light palette, and has to be kept with it. These are the
+       values a page prints with whatever theme the visitor was reading in —
+       without --eyebrow and --heading-accent here, printing from dark mode put
+       turquoise headings on white paper at 1.9:1. --accent-cyan was also still
+       the pre-turquoise #0891b2 from an earlier palette. */
     --background: #ffffff;
     --foreground: #0b1220;
     --card: #ffffff;
     --card-foreground: #0b1220;
-    --muted-foreground: #475569;
+    --muted-foreground: #38464f;
     --accent-blue: #2563eb;
-    --accent-cyan: #0891b2;
-    --border: #e2e8f0;
+    --accent-cyan: #0f766e;
+    --accent-sand: #7d6139;
+    --eyebrow: #0b1220;
+    --heading-accent: #0b1220;
+    --border: #d6e4e3;
+    --input: #d6e4e3;
     --surface: #ffffff;
+    --secondary: #e6f0ef;
+    --secondary-foreground: #0f766e;
+    --muted: #e6f0ef;
     background: #ffffff;
     color: #0b1220;
   }

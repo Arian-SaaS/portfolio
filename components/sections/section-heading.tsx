@@ -41,7 +41,7 @@ export function SectionHeading({
       <h2
         className={cn(
           "mt-2 t-h1",
-          titleTone === "accent" && "text-accent-cyan"
+          titleTone === "accent" && "text-heading-accent"
         )}
       >
         {title}
