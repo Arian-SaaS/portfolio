@@ -13,6 +13,7 @@ import { BentoGrid, BentoCard } from "@/components/ui/bento-grid";
 import { SystemHealthPanel } from "@/components/dashboard/system-health-panel";
 import { projects } from "@/data/projects";
 import { skillCategories } from "@/data/skills";
+import { getProfilePhotoUrl } from "@/lib/profile-photo";
 
 const featuredProjects = projects.slice(0, 4);
 
@@ -26,7 +27,7 @@ const stats = [
 export default function Home() {
   return (
     <>
-      <Hero />
+      <Hero photoUrl={getProfilePhotoUrl()} />
 
       <section className="mx-auto max-w-6xl px-4 pb-24 sm:px-6 lg:px-8">
         <StaggerContainer className="grid grid-cols-2 gap-4 sm:grid-cols-4">

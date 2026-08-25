@@ -60,10 +60,27 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
+    /*
+     * `dark` and `colorScheme` are stamped here at build time, and they have to
+     * be: next-themes injects its script inside <body>, several hundred bytes
+     * past <body> itself, so without this the browser paints one frame of
+     * `bg-background` from the light palette before the script swaps the class.
+     * That is a white flash at the top of every page — barely visible when the
+     * old hero was a pale gradient, glaring now that the first screen is black.
+     *
+     * Hard-coding dark here is correct rather than a guess: the provider below
+     * is configured with defaultTheme="dark", and next-themes only consults the
+     * system preference when the stored theme is literally "system", so a
+     * visitor with nothing in localStorage resolves to dark either way. Only
+     * someone who has explicitly chosen light sees a swap, and theirs is a
+     * dark-to-light correction on their own machine rather than a flash for
+     * everybody. suppressHydrationWarning already covers the mismatch.
+     */
     <html
       lang="en"
       data-scroll-behavior="smooth"
-      className={`${inter.variable} ${geistSans.variable} ${geistMono.variable} h-full scroll-smooth antialiased`}
+      className={`${inter.variable} ${geistSans.variable} ${geistMono.variable} dark h-full scroll-smooth antialiased`}
+      style={{ colorScheme: "dark" }}
       suppressHydrationWarning
     >
       <body className="min-h-full flex flex-col bg-background text-foreground print:bg-white print:text-black">

@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight, Download, Mail } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -12,7 +13,16 @@ import { siteConfig } from "@/data/site-config";
 /** Viewport height less the sticky navbar, so the hero fills exactly what is left. */
 const FILL = "min-h-[calc(100svh-4rem)]";
 
-export function Hero() {
+export type HeroProps = {
+  /**
+   * Resolved by the caller, not here. Finding the photo means touching the
+   * filesystem, and this component runs on the client — so the server page
+   * looks it up and hands down the URL, or null when no photo is present.
+   */
+  photoUrl: string | null;
+};
+
+export function Hero({ photoUrl }: HeroProps) {
   const narrow = useMediaQuery("(max-width: 767px)");
 
   return (
@@ -56,25 +66,40 @@ export function Hero() {
           className={`mx-auto flex ${FILL} max-w-6xl items-start px-4 pt-16 sm:px-6 md:min-h-[680px] md:items-center md:pt-0 lg:px-8`}
         >
           <div className="max-w-xl py-12 md:py-0">
-            <FadeIn>
+            {photoUrl && (
+              <FadeIn>
+                {/* Ringed rather than plain, so the circle keeps an edge where
+                    the portrait's own dark tones meet the black behind it. */}
+                <Image
+                  src={photoUrl}
+                  alt={siteConfig.name}
+                  width={112}
+                  height={112}
+                  priority
+                  className="mb-8 size-20 rounded-full object-cover ring-1 ring-white/20 sm:size-24"
+                />
+              </FadeIn>
+            )}
+
+            <FadeIn delay={photoUrl ? 0.05 : 0}>
               <h1 className="font-heading text-4xl font-semibold tracking-tight text-foreground sm:text-6xl">
                 {siteConfig.name}
               </h1>
             </FadeIn>
 
-            <FadeIn delay={0.05}>
+            <FadeIn delay={0.1}>
               <p className="mt-4 text-sm font-medium text-accent-cyan sm:text-base">
                 {siteConfig.titles.join("  ·  ")}
               </p>
             </FadeIn>
 
-            <FadeIn delay={0.1}>
+            <FadeIn delay={0.15}>
               <p className="mt-6 text-balance text-lg leading-relaxed text-muted-foreground">
                 {siteConfig.headline}
               </p>
             </FadeIn>
 
-            <FadeIn delay={0.15}>
+            <FadeIn delay={0.2}>
               <div className="mt-10 flex flex-wrap items-center gap-3">
                 <Button asChild size="lg">
                   <Link href="/projects">
@@ -89,7 +114,7 @@ export function Hero() {
               </div>
             </FadeIn>
 
-            <FadeIn delay={0.2}>
+            <FadeIn delay={0.25}>
               <div className="mt-6 flex flex-wrap items-center gap-1">
                 <Button asChild variant="ghost" size="sm">
                   <a href={siteConfig.social.linkedin} target="_blank" rel="noreferrer">
