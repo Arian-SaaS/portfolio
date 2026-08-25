@@ -13,6 +13,14 @@ const contactSchema = z.object({
 export async function POST(request: Request) {
   const apiKey = process.env.RESEND_API_KEY;
   const toEmail = process.env.CONTACT_TO_EMAIL || siteConfig.email;
+  /*
+   * Resend will only accept a `from` on a domain you have verified with them.
+   * The fallback is their shared sandbox sender, which works without any setup
+   * but can only ever deliver to the address that owns the Resend account, and
+   * is filtered hard by everyone else. Set CONTACT_FROM_EMAIL to something on
+   * a verified domain before this is worth pointing real visitors at.
+   */
+  const fromEmail = process.env.CONTACT_FROM_EMAIL || "onboarding@resend.dev";
 
   if (!apiKey) {
     return NextResponse.json(
@@ -31,7 +39,7 @@ export async function POST(request: Request) {
 
   const resend = new Resend(apiKey);
   const { error } = await resend.emails.send({
-    from: `Portfolio Contact Form <onboarding@resend.dev>`,
+    from: `Portfolio Contact Form <${fromEmail}>`,
     to: toEmail,
     replyTo: email,
     subject: `New portfolio inquiry from ${name}`,
@@ -39,6 +47,10 @@ export async function POST(request: Request) {
   });
 
   if (error) {
+    // Logged, not swallowed: a rejected send is nearly always a from-address
+    // Resend has not verified, and without this the only symptom is a generic
+    // 502 on the client with nothing in the deployment logs to act on.
+    console.error("contact: resend rejected the send", error);
     return NextResponse.json({ error: "Failed to send message." }, { status: 502 });
   }
 

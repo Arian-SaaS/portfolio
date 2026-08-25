@@ -4,7 +4,6 @@ import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight, Download, Mail } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { FadeIn } from "@/components/motion/fade-in";
 import { GithubIcon, LinkedinIcon } from "@/components/icons/brand-icons";
 import { BlackHoleHeroSection } from "@/components/ui/blackhole-hero-section";
 import { useMediaQuery } from "@/hooks/use-media-query";
@@ -67,7 +66,7 @@ export function Hero({ photoUrl }: HeroProps) {
         >
           <div className="max-w-xl py-12 md:py-0">
             {photoUrl && (
-              <FadeIn>
+              <div className="hero-rise">
                 {/* Ringed rather than plain, so the circle keeps an edge where
                     the portrait's own dark tones meet the black behind it. */}
                 <Image
@@ -78,28 +77,28 @@ export function Hero({ photoUrl }: HeroProps) {
                   priority
                   className="mb-8 size-20 rounded-full object-cover ring-1 ring-white/20 sm:size-24"
                 />
-              </FadeIn>
+              </div>
             )}
 
-            <FadeIn delay={photoUrl ? 0.05 : 0}>
+            <div className="hero-rise" style={{ animationDelay: "0.06s" }}>
               <h1 className="font-heading text-4xl font-semibold tracking-tight text-foreground sm:text-6xl">
                 {siteConfig.name}
               </h1>
-            </FadeIn>
+            </div>
 
-            <FadeIn delay={0.1}>
+            <div className="hero-rise" style={{ animationDelay: "0.12s" }}>
               <p className="mt-4 text-sm font-medium text-accent-cyan sm:text-base">
                 {siteConfig.titles.join("  ·  ")}
               </p>
-            </FadeIn>
+            </div>
 
-            <FadeIn delay={0.15}>
+            <div className="hero-rise" style={{ animationDelay: "0.18s" }}>
               <p className="mt-6 text-balance text-lg leading-relaxed text-muted-foreground">
                 {siteConfig.headline}
               </p>
-            </FadeIn>
+            </div>
 
-            <FadeIn delay={0.2}>
+            <div className="hero-rise" style={{ animationDelay: "0.24s" }}>
               <div className="mt-10 flex flex-wrap items-center gap-3">
                 <Button asChild size="lg">
                   <Link href="/projects">
@@ -112,9 +111,9 @@ export function Hero({ photoUrl }: HeroProps) {
                   </Link>
                 </Button>
               </div>
-            </FadeIn>
+            </div>
 
-            <FadeIn delay={0.25}>
+            <div className="hero-rise" style={{ animationDelay: "0.3s" }}>
               <div className="mt-6 flex flex-wrap items-center gap-1">
                 <Button asChild variant="ghost" size="sm">
                   <a href={siteConfig.social.linkedin} target="_blank" rel="noreferrer">
@@ -132,7 +131,7 @@ export function Hero({ photoUrl }: HeroProps) {
                   </Link>
                 </Button>
               </div>
-            </FadeIn>
+            </div>
           </div>
         </div>
       </BlackHoleHeroSection>

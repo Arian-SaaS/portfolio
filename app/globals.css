@@ -202,6 +202,19 @@
     @apply bg-glass-bg-strong border border-glass-border backdrop-blur-md backdrop-saturate-150;
     box-shadow: inset 0 1px 0 0 rgba(255, 255, 255, 0.16);
   }
+  /* Entrance for above-the-fold copy. Deliberately CSS, and deliberately not
+     the framer-motion FadeIn used further down the page: FadeIn server-renders
+     inline opacity:0, and an element the browser paints fully transparent is
+     not eligible to be the Largest Contentful Paint. On a hero whose largest
+     element is a paragraph that pushed LCP out past bundle download,
+     hydration, an IntersectionObserver callback and the length of the tween —
+     measured at 4.06s. This runs off first paint with no JS in the path.
+
+     Below the fold FadeIn is still the right tool: those elements are not LCP
+     candidates and genuinely should wait until they are scrolled to. */
+  .hero-rise {
+    animation: hero-rise 0.55s cubic-bezier(0.22, 1, 0.36, 1) both;
+  }
   .hero-gradient {
     background-image:
       radial-gradient(
@@ -283,5 +296,20 @@
     --surface: #ffffff;
     background: #ffffff;
     color: #0b1220;
+  }
+}
+@keyframes hero-rise {
+  from {
+    /* Not 0. Chrome discounts a fully transparent element as an LCP candidate,
+       so starting at 0 would hand back the very delay this exists to remove —
+       the paragraph would go uncounted until the fade finished. A thousandth
+       is indistinguishable from transparent and keeps it eligible from the
+       first frame. */
+    opacity: 0.001;
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
   }
 }

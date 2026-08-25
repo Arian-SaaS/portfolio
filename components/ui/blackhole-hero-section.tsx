@@ -735,7 +735,34 @@ export function BlackHoleHeroSection({
     };
   });
 
+  /**
+   * Booting the render means creating a GL context and compiling five
+   * programs, one of which is a 460-step raymarcher — tens to hundreds of
+   * milliseconds of unbroken main thread. Done on mount that lands squarely in
+   * the middle of hydration and holds up the paint of the copy sitting on top
+   * of it, which on a hero is the thing the visitor came to read. So the whole
+   * of it waits for idle.
+   *
+   * Nothing is lost by waiting: the host is already painted in `--bh-void`, so
+   * the frame is the right colour from the first paint and only the picture
+   * inside it arrives a beat later.
+   */
+  const [booted, setBooted] = React.useState(false);
+
   useEffect(() => {
+    // The timeout matters — a page that never goes idle would otherwise never
+    // show the render at all.
+    if (typeof window.requestIdleCallback !== "function") {
+      const t = window.setTimeout(() => setBooted(true), 200);
+      return () => window.clearTimeout(t);
+    }
+    const h = window.requestIdleCallback(() => setBooted(true), { timeout: 600 });
+    return () => window.cancelIdleCallback(h);
+  }, []);
+
+  useEffect(() => {
+    if (!booted) return;
+
     const host = hostRef.current;
     const canvas = canvasRef.current;
     if (!host || !canvas) return;
@@ -1258,7 +1285,7 @@ export function BlackHoleHeroSection({
       // empty log, which is a miserable thing to debug. Deleting what was
       // allocated is enough; the context goes when the canvas does.
     };
-  }, []);
+  }, [booted]);
 
   return (
     <div
