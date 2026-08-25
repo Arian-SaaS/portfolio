@@ -14,6 +14,7 @@
   --color-navy-deep: var(--navy-deep);
   --color-accent-blue: var(--accent-blue);
   --color-accent-cyan: var(--accent-cyan);
+  --color-accent-sand: var(--accent-sand);
   --color-bh-void: var(--bh-void);
   --color-bh-cool: var(--bh-cool);
   --color-bh-mid: var(--bh-mid);
@@ -65,23 +66,31 @@
 }
 
 :root {
+  /* ---- hero render ramp -------------------------------------------------
+     Read by the WebGL hero at runtime. Keep these as plain 3- or 6-digit hex:
+     the shader parses them itself and cannot read oklch(), color-mix(), or any
+     other colour function.
+
+     The ramp runs cool -> warm on purpose. Gas at the inner rim is the hottest
+     thing in the frame, so it lands on the sand; the outer disc cools through
+     the turquoise into deep teal. That is the whole site palette spent inside
+     one object, which is why the hero reads as belonging to the page rather
+     than as art dropped on top of it.
+
+     Not overridden in .dark. The hero is a dark island in both themes, because
+     the render needs a dark ground to read at all. */
+  --bh-void: #05070a;
+  --bh-cool: #145c63;
+  --bh-mid: #2dd4bf;
+  --bh-hot: #f2e2c8;
+
   --navy: #0b1f3a;
   --navy-deep: #060f1f;
   --accent-blue: #2563eb;
-  --accent-cyan: #0891b2;
-
-  /* Accretion-disc heat ramp for the WebGL hero. cool -> mid -> hot tracks
-     the site accent ramp, so the hero shares one palette with the rest of
-     the UI instead of introducing a second one. Deliberately NOT overridden
-     in .dark: the hero is a dark island in both themes, because the render
-     needs a black ground to read at all.
-
-     Keep these as plain 3- or 6-digit hex. The shader parses them itself and
-     cannot read oklch(), color-mix(), or any other colour function. */
-  --bh-void: #04070d;
-  --bh-cool: #164e8c;
-  --bh-mid: #22d3ee;
-  --bh-hot: #eafcff;
+  /* teal-700, not teal-600: --accent-cyan is used as text in 19 places and
+     teal-600 on white is 3.74:1, under the 4.5 AA floor. */
+  --accent-cyan: #0f766e;
+  --accent-sand: #8a6d43;
   --glass-bg: rgba(255, 255, 255, 0.55);
   --glass-bg-strong: rgba(255, 255, 255, 0.75);
   --glass-border: rgba(11, 31, 58, 0.08);
@@ -100,18 +109,18 @@
   --card-foreground: #0b1220;
   --popover: #ffffff;
   --popover-foreground: #0b1220;
-  --primary: #0b1f3a;
+  --primary: #0f766e;
   --primary-foreground: #ffffff;
   --secondary: #f1f5f9;
-  --secondary-foreground: #0b1f3a;
+  --secondary-foreground: #0f766e;
   --muted: #f1f5f9;
   --muted-foreground: #475569;
-  --accent: #e0f2fe;
-  --accent-foreground: #0b1f3a;
+  --accent: #ccfbf1;
+  --accent-foreground: #0f766e;
   --destructive: oklch(0.577 0.245 27.325);
   --border: #e2e8f0;
   --input: #e2e8f0;
-  --ring: #0891b2;
+  --ring: #0d9488;
   --chart-1: oklch(0.87 0 0);
   --chart-2: oklch(0.556 0 0);
   --chart-3: oklch(0.439 0 0);
@@ -120,82 +129,85 @@
   --radius: 0.75rem;
   --sidebar: #f8fafc;
   --sidebar-foreground: #0b1220;
-  --sidebar-primary: #0b1f3a;
+  --sidebar-primary: #0f766e;
   --sidebar-primary-foreground: #ffffff;
   --sidebar-accent: #f1f5f9;
-  --sidebar-accent-foreground: #0b1f3a;
+  --sidebar-accent-foreground: #0f766e;
   --sidebar-border: #e2e8f0;
-  --sidebar-ring: #0891b2;
+  --sidebar-ring: #0d9488;
 }
 
+
 .dark {
-  /* The dark theme is the hero, continued. Every neutral below is a near-black
-     carrying a trace of the same turquoise as the accent, rather than the navy
-     ramp this used to run on — so the page reads as one surface from the black
-     hole at the top all the way down, with no seam where the hero ends.
+  /* Slate ground, turquoise primary, warm sand as the second accent.
 
-     The two anchors are deliberately aliases, not copies: --background IS the
-     ground the render is drawn on, and --hero-vignette IS that same black. Copy
-     the hex into either and the day someone retunes the hero the page stops
-     matching it, silently, and only on the join. */
-  --navy: #071016;
-  --navy-deep: var(--bh-void);
-  /* Kept a step bluer than --accent-cyan on purpose. These two are the pair the
-     charts and diagrams separate series with, and two turquoises a hair apart
-     are two lines nobody can tell apart. */
-  --accent-blue: #38bdf8;
-  --accent-cyan: var(--bh-mid);
-  --glass-bg: rgba(255, 255, 255, 0.045);
-  --glass-bg-strong: rgba(255, 255, 255, 0.08);
-  /* A turquoise hairline rather than a white one. At 12% it does not read as
-     coloured, only as belonging. */
-  --glass-border: rgba(125, 226, 240, 0.14);
+     The ground is a deep slate rather than true black. Black is dramatic under
+     the hero and merciless everywhere else: it flattens every panel to the same
+     plane, and the only way back out is borders, which is how a page ends up
+     looking like a wireframe. A slate ground leaves room for --surface and
+     --card to sit visibly above it without a single extra line.
+
+     Sand is the counterweight. Turquoise, sky and slate are all cold, and a
+     page with no warm point in it reads as inert no matter how much motion is
+     put on top. Sand is reserved for things that should feel handled rather
+     than generated: the forward-deployed work, a highlighted metric, an
+     accented rule. Used sparingly it is what stops the palette going clinical. */
+  --navy: #11171f;
+  --navy-deep: #0d1117;
+  /* Kept distinctly bluer than the turquoise. These two are the pair the charts
+     and diagrams separate series with, and two turquoises a hair apart are two
+     lines nobody can tell apart. */
+  --accent-blue: #58a6ff;
+  --accent-cyan: #2dd4bf;
+  --accent-sand: #d6c3a5;
+  --glass-bg: rgba(255, 255, 255, 0.04);
+  --glass-bg-strong: rgba(255, 255, 255, 0.07);
+  --glass-border: rgba(160, 220, 214, 0.14);
   --hero-vignette: var(--bh-void);
-  --surface: #0b1218;
-  --status-good: #22c55e;
-  --status-warning: #f59e0b;
-  --status-serious: #fb923c;
-  --status-critical: #ef4444;
+  /* The ambient wash: turquoise from the top left, a much fainter sand from the
+     right. The sand one is deliberately weaker — warm light spreads visually
+     wider than cold, so matched opacities do not read as matched. */
+  --page-glow-1: rgba(45, 212, 191, 0.06);
+  --page-glow-2: rgba(214, 195, 165, 0.035);
+  --surface: #161b22;
+  --status-good: #3fb950;
+  --status-warning: #d29922;
+  --status-serious: #f0883e;
+  --status-critical: #f85149;
 
-  /* Ambient wash laid over the flat ground by html::before. Transparent in
-     light, where a coloured page would fight the content. */
-  --page-glow-1: rgba(34, 211, 238, 0.07);
-  --page-glow-2: rgba(56, 189, 248, 0.05);
-
-  --background: var(--bh-void);
-  --foreground: #e9f6f8;
-  --card: rgba(255, 255, 255, 0.035);
-  --card-foreground: #e9f6f8;
-  --popover: #0a1219;
-  --popover-foreground: #e9f6f8;
-  --primary: var(--bh-mid);
-  --primary-foreground: #032027;
-  --secondary: #0f1b21;
-  --secondary-foreground: #e9f6f8;
-  --muted: #0f1b21;
-  /* Tinted toward teal so muted copy sits in the same family as everything
-     else instead of reading as a cold grey dropped on top of it. */
-  --muted-foreground: #93aab2;
-  --accent: #123037;
-  --accent-foreground: #eafcff;
+  --background: #0d1117;
+  --foreground: #e6edf3;
+  --card: rgba(255, 255, 255, 0.038);
+  --card-foreground: #e6edf3;
+  --popover: #161b22;
+  --popover-foreground: #e6edf3;
+  --primary: #2dd4bf;
+  --primary-foreground: #04211d;
+  --secondary: #161b22;
+  --secondary-foreground: #e6edf3;
+  --muted: #161b22;
+  --muted-foreground: #9bacba;
+  --accent: #17313a;
+  --accent-foreground: #e9fbf7;
   --destructive: oklch(0.704 0.191 22.216);
-  --border: rgba(255, 255, 255, 0.09);
-  --input: rgba(255, 255, 255, 0.13);
-  --ring: var(--bh-mid);
+  --border: rgba(255, 255, 255, 0.1);
+  --input: rgba(255, 255, 255, 0.14);
+  --ring: #2dd4bf;
   --chart-1: oklch(0.87 0 0);
   --chart-2: oklch(0.556 0 0);
   --chart-3: oklch(0.439 0 0);
   --chart-4: oklch(0.371 0 0);
   --chart-5: oklch(0.269 0 0);
-  --sidebar: #071016;
-  --sidebar-foreground: #e9f6f8;
-  --sidebar-primary: var(--bh-mid);
-  --sidebar-primary-foreground: #032027;
-  --sidebar-accent: #0f1b21;
-  --sidebar-accent-foreground: #e9f6f8;
-  --sidebar-border: rgba(255, 255, 255, 0.09);
-  --sidebar-ring: var(--bh-mid);
+  --sidebar: #11171f;
+  --sidebar-foreground: #e6edf3;
+  --sidebar-primary: #2dd4bf;
+  --sidebar-primary-foreground: #04211d;
+  --sidebar-accent: #161b22;
+  --sidebar-accent-foreground: #e6edf3;
+  --sidebar-border: rgba(255, 255, 255, 0.1);
+  --sidebar-ring: #2dd4bf;
 }
+
 
 
 @layer base {

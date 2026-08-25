@@ -61,8 +61,24 @@ export function Hero({ photoUrl }: HeroProps) {
         steps={narrow ? 200 : 300}
         resolution={narrow ? 0.6 : 0.7}
       >
+        {/*
+          The render grounds itself in near-black — a black hole with a slate
+          void would not be one — while the page below it is slate. Left alone
+          that meets as a hard line across the full width. This dissolves the
+          one into the other over 8rem, so the hero reads as the top of the page
+          rather than a panel sitting on it.
+
+          `to-background` resolves inside the `dark` scope on the host, which is
+          the same value the page itself uses, so the two ends of the gradient
+          cannot drift apart.
+        */}
         <div
-          className={`mx-auto flex ${FILL} max-w-6xl items-start px-4 pt-16 sm:px-6 md:min-h-[680px] md:items-center md:pt-0 lg:px-8`}
+          aria-hidden
+          className="pointer-events-none absolute inset-x-0 bottom-0 h-32 bg-gradient-to-b from-transparent to-background"
+        />
+
+        <div
+          className={`relative mx-auto flex ${FILL} max-w-6xl items-start px-4 pt-16 sm:px-6 md:min-h-[680px] md:items-center md:pt-0 lg:px-8`}
         >
           <div className="max-w-xl py-12 md:py-0">
             {photoUrl && (
