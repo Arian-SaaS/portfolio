@@ -105,6 +105,11 @@
   --glass-bg-strong: rgba(255, 255, 255, 0.82);
   --glass-border: rgba(15, 118, 110, 0.12);
   --hero-vignette: transparent;
+  --dark-pattern-base: radial-gradient(100% 100% at 0% 0%, rgb(248, 250, 252) 0%, rgb(238, 241, 246) 100%);
+  --dark-pattern-streak: linear-gradient(rgba(0, 145, 180, 0.12) 0%, rgba(0, 145, 180, 0) 100%);
+  --dark-pattern-dot: radial-gradient(circle at 1px 1px, rgba(15, 23, 42, 0.2) 1px, transparent 0);
+  --dark-pattern-highlight: radial-gradient(70% 60% at 0% 0%, rgba(71, 85, 105, 0.08), transparent 72%);
+  --dark-pattern-texture-opacity: 0;
 
   /* The wash. Considerably stronger than a first pass at this, which was so
      faint it may as well have been the transparent it replaced. A white page
@@ -180,6 +185,7 @@
 
 
 .dark {
+  color-scheme: dark;
   /* Elegant dark pattern: black ground, cool blue light, and restrained
      slate surfaces so the background texture can stay visible without reducing
      readability. The background stays near-black while the content surfaces
@@ -196,6 +202,11 @@
   --glass-bg-strong: rgba(10, 14, 20, 0.86);
   --glass-border: rgba(255, 255, 255, 0.14);
   --hero-vignette: #000000;
+  --dark-pattern-base: radial-gradient(100% 100% at 0% 0%, rgb(46, 46, 46) 0%, rgb(0, 0, 0) 100%);
+  --dark-pattern-streak: linear-gradient(rgb(0, 207, 255) 0%, rgba(0, 207, 255, 0) 100%);
+  --dark-pattern-dot: radial-gradient(circle at 1px 1px, rgba(255, 255, 255, 0.5) 1px, transparent 0);
+  --dark-pattern-highlight: radial-gradient(70% 60% at 0% 0%, rgba(71, 85, 105, 0.2), transparent 72%);
+  --dark-pattern-texture-opacity: 0.05;
   --grid-line-opacity: 0.1;
   --grid-dot-opacity: 0.2;
 
@@ -274,6 +285,7 @@
   }
   html {
     @apply font-sans;
+    color-scheme: light;
   }
 
   /* An ambient turquoise wash over the flat ground, so the page carries the
@@ -303,6 +315,14 @@
 }
 
 @layer components {
+  .dark-pattern-texture {
+    opacity: var(--dark-pattern-texture-opacity);
+  }
+
+  .light .dark-pattern-streak {
+    opacity: 0.08;
+  }
+
   .glass-panel {
     @apply bg-glass-bg border border-glass-border backdrop-blur-xl backdrop-saturate-150;
     box-shadow: inset 0 1px 0 0 rgba(255, 255, 255, 0.12);

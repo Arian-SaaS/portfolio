@@ -62,8 +62,8 @@ export default function RootLayout({
 }>) {
   return (
     /*
-     * `dark` and `colorScheme` are stamped here at build time, and they have to
-     * be: next-themes injects its script inside <body>, several hundred bytes
+     * `dark` is stamped here at build time, and it has to be: next-themes injects
+     * its script inside <body>, several hundred bytes
      * past <body> itself, so without this the browser paints one frame of
      * `bg-background` from the light palette before the script swaps the class.
      * That is a white flash at the top of every page — barely visible when the
@@ -81,7 +81,6 @@ export default function RootLayout({
       lang="en"
       data-scroll-behavior="smooth"
       className={`${inter.variable} ${geistSans.variable} ${geistMono.variable} dark h-full scroll-smooth antialiased`}
-      style={{ colorScheme: "dark" }}
       suppressHydrationWarning
     >
       <body className="min-h-full flex flex-col bg-background text-foreground print:bg-white print:text-black">
