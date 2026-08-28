@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { Inter, Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
-import ConstellationField from "@/components/ui/constellation-field";
+import { DarkGradientBg } from "@/components/ui/elegant-dark-pattern";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { Navbar } from "@/components/layout/navbar";
 import { Footer } from "@/components/layout/footer";
@@ -96,19 +96,12 @@ export default function RootLayout({
           disableTransitionOnChange
         >
           <TooltipProvider>
-            {/* The supplied constellation field is the shared visual ground for
-                every route. Keep it decorative and behind the document flow. */}
-            <ConstellationField
-              mode="auto"
-              speed={0.55}
-              density={0.9}
-              opacity={0.82}
-              className="pointer-events-none fixed inset-0 z-[-1] h-screen w-screen print:hidden"
-            />
-            <Navbar />
-            <CommandPalette />
-            <main className="flex-1">{children}</main>
-            <Footer />
+            <DarkGradientBg>
+              <Navbar />
+              <CommandPalette />
+              <main className="flex-1">{children}</main>
+              <Footer />
+            </DarkGradientBg>
           </TooltipProvider>
         </ThemeProvider>
       </body>
