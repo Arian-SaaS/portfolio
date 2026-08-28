@@ -58,8 +58,10 @@ export function Hero({ photoUrl }: HeroProps) {
         elevation={narrow ? -7 : -5.5}
         fov={narrow ? 58 : 42}
         glow={narrow ? 0.85 : 1}
-        steps={narrow ? 200 : 300}
-        resolution={narrow ? 0.6 : 0.7}
+        paused={narrow}
+        steps={narrow ? 140 : 220}
+        resolution={narrow ? 0.45 : 0.55}
+        maxDpr={narrow ? 1.25 : 1.35}
       >
         {/*
           The render grounds itself in near-black — a black hole with a slate

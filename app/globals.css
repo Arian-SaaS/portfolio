@@ -73,18 +73,18 @@
      the shader parses them itself and cannot read oklch(), color-mix(), or any
      other color function.
 
-     The ramp runs cool -> warm on purpose. Gas at the inner rim is the hottest
-     thing in the frame, so it lands on the sand; the outer disc cools through
-     the turquoise into deep teal. That is the whole site palette spent inside
-     one object, which is why the hero reads as belonging to the page rather
-     than as art dropped on top of it.
+     The ramp runs cool -> bright on purpose. Gas at the inner rim is the
+     hottest thing in the frame, so it lands on the same cyan-white highlight
+     used by the pattern; the outer disc cools through blue into deep teal.
+     That is the site palette spent inside one object, which is why the hero
+     reads as belonging to the page rather than as art dropped on top of it.
 
      Not overridden in .dark. The hero is a dark island in both themes, because
      the render needs a dark ground to read at all. */
   --bh-void: #05070a;
-  --bh-cool: #145c63;
-  --bh-mid: #2dd4bf;
-  --bh-hot: #f2e2c8;
+  --bh-cool: #164e8c;
+  --bh-mid: #00cfff;
+  --bh-hot: #eafcff;
 
   --navy: #0b1f3a;
   --navy-deep: #060f1f;
@@ -324,19 +324,27 @@
   }
 
   .glass-panel {
-    @apply bg-glass-bg border border-glass-border backdrop-blur-xl backdrop-saturate-150;
+    @apply bg-glass-bg border border-glass-border backdrop-blur-md backdrop-saturate-150;
     box-shadow: inset 0 1px 0 0 rgba(255, 255, 255, 0.12);
   }
   .glass-panel-strong {
-    @apply bg-glass-bg-strong border border-glass-border backdrop-blur-xl backdrop-saturate-150;
-    box-shadow: inset 0 1px 0 0 rgba(255, 255, 255, 0.16);
-  }
-  /* Lighter blur than .glass-panel-strong — this one sits on a `sticky`
-     header, and a large blur radius recomposited every scroll frame is
-     a well-known source of scroll jank on macOS. */
-  .glass-panel-nav {
     @apply bg-glass-bg-strong border border-glass-border backdrop-blur-md backdrop-saturate-150;
     box-shadow: inset 0 1px 0 0 rgba(255, 255, 255, 0.16);
+  }
+  /* The sticky header keeps the glass treatment but skips backdrop blur. Safari
+     otherwise recomposites the entire viewport behind it on every scroll frame. */
+  .glass-panel-nav {
+    @apply bg-glass-bg-strong border border-glass-border;
+    box-shadow: inset 0 1px 0 0 rgba(255, 255, 255, 0.16);
+  }
+
+  @media (max-width: 767px), (hover: none) {
+    .glass-panel,
+    .glass-panel-strong,
+    .glass-panel-nav {
+      -webkit-backdrop-filter: none !important;
+      backdrop-filter: none !important;
+    }
   }
   /* Entrance for above-the-fold copy. Deliberately CSS, and deliberately not
      the framer-motion FadeIn used further down the page: FadeIn server-renders

@@ -14,7 +14,7 @@ export function DarkGradientBg({ children, className }: DarkGradientBgProps) {
         className,
       )}
     >
-      <div className="absolute inset-0" aria-hidden="true">
+      <div className="pointer-events-none fixed inset-0" aria-hidden="true">
         <div
           className="absolute inset-0 opacity-100"
           style={{
@@ -67,7 +67,7 @@ export function DarkGradientBg({ children, className }: DarkGradientBgProps) {
       </div>
 
       <div
-        className="dark-pattern-texture absolute inset-0 bg-repeat"
+        className="dark-pattern-texture fixed inset-0 bg-repeat"
         style={{
           backgroundImage:
             'url("https://framerusercontent.com/images/6mcf62RlDfRfU61Yg5vb2pefpi4.png")',
@@ -77,7 +77,7 @@ export function DarkGradientBg({ children, className }: DarkGradientBgProps) {
       />
 
       <div
-        className="absolute inset-0 opacity-20"
+        className="fixed inset-0 opacity-20"
         style={{
           backgroundImage: "var(--dark-pattern-dot)",
           backgroundSize: "20px 20px",
@@ -86,7 +86,7 @@ export function DarkGradientBg({ children, className }: DarkGradientBgProps) {
       />
 
       <div
-        className="absolute inset-0"
+        className="fixed inset-0"
         style={{
           background: "var(--dark-pattern-highlight)",
         }}

@@ -102,8 +102,8 @@ export interface BlackHoleHeroSectionProps
   /** Corner darkening, 0 to 1. */
   vignette?: number;
   /**
-   * Steps each ray may take. This is the one dial that costs real time. 300
-   * is clean; 180 will do on a phone; below 140 the disc starts to band.
+   * Steps each ray may take. This is the one dial that costs real time. 220
+   * is clean; 140 will do on a phone; below 140 the disc starts to band.
    */
   steps?: number;
   /** Render scale, 0.5 to 1. Drop it before you drop `steps`. */
@@ -1018,6 +1018,12 @@ export function BlackHoleHeroSection({
     let running = true;
     let visible = true;
     let raf = 0;
+    let scrolling = false;
+    let scrollTimer = 0;
+    const frameInterval =
+      window.matchMedia("(max-width: 767px), (hover: none)").matches
+        ? 1000 / 30
+        : 1000 / 45;
 
     function pass(prog: Prog, target: Target | null) {
       gl!.useProgram(prog.program);
@@ -1191,10 +1197,14 @@ export function BlackHoleHeroSection({
     function tick(now: number) {
       if (!running) return;
       raf = requestAnimationFrame(tick);
-      if (!visible) { lastFrame = now; return; }
+      if (!visible || scrolling || props.current.paused) {
+        lastFrame = now;
+        return;
+      }
+      if (lastFrame && now - lastFrame < frameInterval) return;
       const dt = lastFrame ? Math.min(0.05, (now - lastFrame) / 1000) : 0;
       lastFrame = now;
-      if (!props.current.paused && !reduced) clock += dt;
+      if (!reduced) clock += dt;
       render(clock);
     }
 
@@ -1236,6 +1246,15 @@ export function BlackHoleHeroSection({
     });
 
     const onVisibility = () => { visible = !document.hidden; lastFrame = 0; };
+    const onScroll = () => {
+      scrolling = true;
+      lastFrame = 0;
+      window.clearTimeout(scrollTimer);
+      scrollTimer = window.setTimeout(() => {
+        scrolling = false;
+        lastFrame = 0;
+      }, 120);
+    };
     const onLost = (e: Event) => {
       // Asking for the context back is only worth it if it comes back working.
       // Until it does the canvas is hidden, because a dead one paints white.
@@ -1260,6 +1279,7 @@ export function BlackHoleHeroSection({
     };
 
     document.addEventListener("visibilitychange", onVisibility);
+    window.addEventListener("scroll", onScroll, { passive: true });
     canvas.addEventListener("webglcontextlost", onLost);
     canvas.addEventListener("webglcontextrestored", onRestored);
 
@@ -1269,7 +1289,9 @@ export function BlackHoleHeroSection({
       ro.disconnect();
       io.disconnect();
       themeWatch.disconnect();
+      window.clearTimeout(scrollTimer);
       document.removeEventListener("visibilitychange", onVisibility);
+      window.removeEventListener("scroll", onScroll);
       canvas.removeEventListener("webglcontextlost", onLost);
       canvas.removeEventListener("webglcontextrestored", onRestored);
       dropTargets();
