@@ -193,28 +193,28 @@
      put on top. Sand is reserved for things that should feel handled rather
      than generated: the forward-deployed work, a highlighted metric, an
      accented rule. Used sparingly it is what stops the palette going clinical. */
-  --navy: #11171f;
-  --navy-deep: #0d1117;
+  --navy: #0e1222;
+  --navy-deep: #070914;
   /* Kept distinctly bluer than the turquoise. These two are the pair the charts
      and diagrams separate series with, and two turquoises a hair apart are two
      lines nobody can tell apart. */
-  --accent-blue: #58a6ff;
-  --accent-cyan: #2dd4bf;
-  --accent-sand: #d6c3a5;
-  --eyebrow: var(--accent-cyan);
-  --heading-accent: var(--accent-cyan);
-  --glass-bg: rgba(255, 255, 255, 0.04);
-  --glass-bg-strong: rgba(255, 255, 255, 0.07);
-  --glass-border: rgba(160, 220, 214, 0.14);
-  --hero-vignette: var(--bh-void);
+  --accent-blue: #7fc4ff;
+  --accent-cyan: #7fc4ff;
+  --accent-sand: #e6c879;
+  --eyebrow: var(--accent-sand);
+  --heading-accent: var(--accent-sand);
+  --glass-bg: rgba(14, 18, 34, 0.54);
+  --glass-bg-strong: rgba(14, 18, 34, 0.78);
+  --glass-border: rgba(28, 34, 54, 0.92);
+  --hero-vignette: #070914;
   /* The ambient wash: turquoise from the top left, a much fainter sand from the
      right. The sand one is deliberately weaker — warm light spreads visually
      wider than cold, so matched opacities do not read as matched. */
-  --grid-line-opacity: 0.15;
-  --grid-dot-opacity: 0.26;
+  --grid-line-opacity: 0.12;
+  --grid-dot-opacity: 0.24;
 
-  --page-glow-1: rgba(45, 212, 191, 0.06);
-  --page-glow-2: rgba(214, 195, 165, 0.035);
+  --page-glow-1: rgba(127, 196, 255, 0.055);
+  --page-glow-2: rgba(230, 200, 121, 0.045);
 
   /* Elevation in the dark, which is a different problem entirely.
 
@@ -238,43 +238,43 @@
     0 2px 6px rgba(0, 0, 0, 0.55),
     0 18px 44px rgba(0, 0, 0, 0.55),
     0 0 30px color-mix(in srgb, var(--card-accent, var(--accent-cyan)) 16%, transparent);
-  --surface: #161b22;
+  --surface: #0e1222;
   --status-good: #3fb950;
   --status-warning: #d29922;
   --status-serious: #f0883e;
   --status-critical: #f85149;
 
-  --background: #0d1117;
-  --foreground: #e6edf3;
-  --card: rgba(255, 255, 255, 0.038);
-  --card-foreground: #e6edf3;
-  --popover: #161b22;
-  --popover-foreground: #e6edf3;
-  --primary: #2dd4bf;
-  --primary-foreground: #04211d;
-  --secondary: #161b22;
-  --secondary-foreground: #e6edf3;
-  --muted: #161b22;
-  --muted-foreground: #9bacba;
-  --accent: #17313a;
-  --accent-foreground: #e9fbf7;
+  --background: #070914;
+  --foreground: #f2f4fb;
+  --card: rgba(14, 18, 34, 0.62);
+  --card-foreground: #f2f4fb;
+  --popover: #0e1222;
+  --popover-foreground: #f2f4fb;
+  --primary: #e6c879;
+  --primary-foreground: #0e1222;
+  --secondary: #0e1222;
+  --secondary-foreground: #f2f4fb;
+  --muted: #0e1222;
+  --muted-foreground: #9aa3bc;
+  --accent: #1c2236;
+  --accent-foreground: #f2f4fb;
   --destructive: oklch(0.704 0.191 22.216);
-  --border: rgba(255, 255, 255, 0.1);
-  --input: rgba(255, 255, 255, 0.14);
-  --ring: #2dd4bf;
+  --border: #1c2236;
+  --input: #1c2236;
+  --ring: #7fc4ff;
   --chart-1: oklch(0.87 0 0);
   --chart-2: oklch(0.556 0 0);
   --chart-3: oklch(0.439 0 0);
   --chart-4: oklch(0.371 0 0);
   --chart-5: oklch(0.269 0 0);
-  --sidebar: #11171f;
-  --sidebar-foreground: #e6edf3;
-  --sidebar-primary: #2dd4bf;
-  --sidebar-primary-foreground: #04211d;
-  --sidebar-accent: #161b22;
-  --sidebar-accent-foreground: #e6edf3;
-  --sidebar-border: rgba(255, 255, 255, 0.1);
-  --sidebar-ring: #2dd4bf;
+  --sidebar: #0e1222;
+  --sidebar-foreground: #f2f4fb;
+  --sidebar-primary: #e6c879;
+  --sidebar-primary-foreground: #0e1222;
+  --sidebar-accent: #1c2236;
+  --sidebar-accent-foreground: #f2f4fb;
+  --sidebar-border: #1c2236;
+  --sidebar-ring: #7fc4ff;
 }
 
 
