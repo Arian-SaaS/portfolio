@@ -19,13 +19,18 @@ export const experience: ExperienceEntry[] = [
   {
     type: "experience",
     period: "2021 – 2024",
-    title: "Operations & Internal Tools Lead",
+    title: "Project Manager",
     org: "A1 Residential Improvements",
     description:
-      "Designed and built internal scheduling, budget-tracking, and vendor coordination tools to automate manual operational workflows.",
+      "Managed residential improvement projects from planning through execution, coordinating schedules, budgets, vendors, field operations, and internal stakeholders to support on-time project delivery.",
     bullets: [
-      "Reduced administrative overhead by 20% and helped keep 95% of projects on schedule with purpose-built internal tools.",
-      "Translated field operations requirements into lightweight software workflows, dashboards, and reporting processes that improved project visibility and coordination between crews, vendors, and management.",
+      "Managed project schedules, priorities, budgets, vendor coordination, and operational workflows across multiple residential improvement projects.",
+      "Helped maintain a 95% on-time project completion rate by tracking milestones, identifying schedule risks, coordinating resources, and resolving operational blockers.",
+      "Reduced administrative overhead by 20% by improving scheduling, budget tracking, vendor management, and internal reporting processes.",
+      "Gathered requirements from field crews, vendors, and management and translated business needs into practical workflows, dashboards, and project-tracking tools.",
+      "Monitored project progress, costs, dependencies, and outstanding issues to improve visibility and support timely management decisions.",
+      "Coordinated communication between crews, vendors, and management to ensure project requirements, timelines, and operational priorities remained aligned.",
+      "Improved project reporting and operational processes to provide clearer visibility into project status, budget performance, scheduling, and vendor activities.",
     ],
   },
   {
